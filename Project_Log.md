@@ -1,5 +1,5 @@
 #### Sun, 24 Apr 
-* 4:30 pm - Rick posted histograms in EDA folder as `historgrams.R`.
+* 4:30 pm - Rick posted histograms in EDA folder as `histograms.R`.
 
 * 4:00 pm - Zoom conference with Cheryl, Keith, and Rick
   * Rick will work on exploratory data analysis and various transforms.
