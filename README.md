@@ -1,14 +1,16 @@
 #### GitHub File Descriptions
 
-* `Background_and_Task.md`: Contains the description of the analytic issue and the task.  
+* `Project_Log.md`: A log of activities, events, and decisions.
 
-* `Code_Book.md`: Contains a description of all the variables in `charity.csv`.
+* `Background_and_Task.md`: The description of the analytic issue and the task.  
 
-* `Hints.md`: Contains suggestions and guidelines for doing the project.
+* `Code_Book.md`: A description of all the variables in `charity.csv`.
 
-* `Rubric.md`: Contains criteria for getting graded on the project.
+* `Hints.md`: Suggestions and guidelines for doing the project.
 
-* `TeamProjectEx.R`: Contains R code to use as a baseline.
+* `Rubric.md`: Criteria for getting graded on the project.
+
+* `TeamProjectEx.R`: R code to use as a baseline.
  
-* `charity.csv`: Contains the data to be used. 
+* `charity.csv`: The data to be used. 
 
