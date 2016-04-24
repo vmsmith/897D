@@ -1,3 +1,5 @@
+#Quick start!:
+
 ```r
 charity <- read.csv("./charity.csv")
 str(charity)
