@@ -10,7 +10,7 @@
 
 * `Hints.md`: Suggestions and guidelines for doing the project.
 
-* `Rubric.md`: Criteria for getting graded on the project.
+* `Rubric.md`: Criteria for writing the final product.
 
 * `TeamProjectEx.R`: R code to use as a baseline.
  
