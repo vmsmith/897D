@@ -1,4 +1,4 @@
-```{r}
+```r
 charity <- read.csv("./charity.csv")
 str(charity)
 ```
