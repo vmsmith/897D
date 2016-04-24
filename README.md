@@ -1,4 +1,6 @@
-#### GitHub File Descriptions
+#### GitHub Folder and File Descriptions
+
+* `EDA`: Exploratory Data Analysis files
 
 * `Project_Log.md`: A log of activities, events, and decisions.
 
