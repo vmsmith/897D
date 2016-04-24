@@ -18,7 +18,7 @@
   
   * Sort DONR in order of the posterior probabilities from highest to lowest;
   
-  * Calculate the cumulative sum of (14.5  DONR – 2) as you go down the list.
+  * Calculate the cumulative sum of (14.5 x DONR – 2) as you go down the list.
 
 Then find the maximum of this profit function. The R script file “TeamProjectEx.R” describes how to do this.
 
