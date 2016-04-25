@@ -1,7 +1,5 @@
 #### Exploratory Data Analysis files
 
-![home](./figures/home_hist.png)
-
 ```{r}
 charity <- read.csv("./charity.csv")
 str(charity)
@@ -28,6 +26,7 @@ barplot(counts2, main = "chld Barplot")
 dev.copy(png,'./EDA/chld_bar.png')
 dev.off()
 ```
+![chld](./figures/chld_bar.png)
 
 #### hinc  
 Household income (7 categories)  
@@ -38,7 +37,7 @@ barplot(counts3, main = "hinc Barplot")
 dev.copy(png,'./EDA/hinc_bar.png')
 dev.off()
 ```
-
+![hinc](./figures/hinc_bar.png)
 
 #### genf  
 Gender (0 = Male, 1 = Female)  
@@ -49,6 +48,7 @@ barplot(counts4, main = "genf Barplot")
 dev.copy(png,'./EDA/genf_bar.png')
 dev.off()
 ```
+![genf](./figures/genf_bar.png)
 
 #### wrat  
 Wealth Rating (Wealth rating uses median family income and population statistics from each area to index relative wealth within each state. The segments are denoted 0-9, with 9 being the highest wealth group and 0 being the lowest.)  
@@ -63,6 +63,9 @@ barplot(counts5, main = "wrat Barplot")
 dev.copy(png,'./EDA/wrat_bar.png')
 dev.off()
 ```
+![wrat Histogram](./figures/wrat_hist.png)
+![wrat Barplot](./figures/wrat_bar.png)
+
 
 #### avhv  
 Average Home Value in potential donor's neighborhood in $ thousands  
@@ -75,6 +78,8 @@ hist(charity$avhv, main = "avhv Histogram", xlim = c(0, 700))
 dev.copy(png,'./EDA/avhv_hist.png')
 dev.off()
 ```
+![avhv Boxplot](./figures/avhv_box.png)
+![avhv Histogram](./figures/avhv_hist.png)
 
 #### incm  
 Median Family Income in potential donor's neighborhood in $ thousands  
