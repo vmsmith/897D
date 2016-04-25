@@ -1,3 +1,3 @@
 #### Exploratory Data Analysis files
 
-![Bilby Stampede](buffalo.png)
+![Bilby Stampede](/figures/buffalo.png)
