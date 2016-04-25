@@ -76,7 +76,7 @@ Wealth Rating (Wealth rating uses median family income and population statistics
 #### avhv  
 Average Home Value in potential donor's neighborhood in $ thousands  
 ```r
-    Min   UH  Med   LH  Max
+    Min   LH  Med   UH  Max
 ##  48   133  169  217  710
 ```
 ![avhv Boxplot](./figures/avhv_box.png)
@@ -85,7 +85,7 @@ Average Home Value in potential donor's neighborhood in $ thousands
 #### incm  
 Median Family Income in potential donor's neighborhood in $ thousands  
 ```r
-   Min   UH   Med   LH   Max
+   Min   LH   Med   UH   Max
 ##  48  133   169  217   710
 ```
 ![incm Boxplot](./figures/incm_box.png)
@@ -93,151 +93,98 @@ Median Family Income in potential donor's neighborhood in $ thousands
 
 #### inca  
 Average Family Income in potential donor's neighborhood in $ thousands  
-```{r}
-fivenum(charity$inca)
-boxplot(charity$inca, main = "inca Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/inca_box.png')
-dev.off()
-hist(charity$inca, main = "inca Histogram")
-dev.copy(png,'./EDA/inca_hist.png')
-dev.off()
+```r
+        Min   LH   Med   UH   Max
+## [1]   12   40    51   68   305
 ```
 ![inca Boxplot](./figures/inca_box.png)
 ![inca Histogram](./figures/inca_hist.png)
 
 #### plow  
 Percent categorized as “low income” in potential donor's neighborhood  
-```{r}
-fivenum(charity$plow)
-boxplot(charity$plow, main = "plow Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/plow_box.png')
-dev.off()
-hist(charity$plow, main = "plow Histogram")
-dev.copy(png,'./EDA/plow_hist.png')
-dev.off()
+```r
+        Min   LH   Med   UH   Max
+## [1]    0    4    10   21    87
 ```
 ![plow Boxplot](./figures/plow_box.png)
 ![plow Histogram](./figures/plow_hist.png)
 
 #### npro  
 Lifetime number of promotions received to date  
-```{r}
-fivenum(charity$npro)
-boxplot(charity$npro, main = "npro Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/npro_box.png')
-dev.off()
-hist(charity$npro, main = "npro Histogram")
-dev.copy(png,'./EDA/npro_hist.png')
-dev.off()
+```r
+         Min   LH   Med   UH   Max
+## [1]     2   36    58   82   164
 ```
 ![npro Boxplot](./figures/npro_box.png)
 ![npro Histogram](./figures/npro_hist.png)
 
 #### tgif  
 Dollar amount of lifetime gifts to date  
-```{r}
-fivenum(charity$tgif)
-boxplot(charity$tgif, main = "tgif Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/tgif_box.png')
-dev.off()
-hist(charity$tgif, main = "tgif Histogram", breaks = 50)
-dev.copy(png,'./EDA/tgif_hist.png')
-dev.off()
+```r
+         Min   LH   Med   UH   Max
+## [1]     2   36    58   82   164
 ```
 ![tgif Boxplot](./figures/tgif_box.png)
 ![tgif Histogram](./figures/tgif_hist.png)
 
 #### lgif  
 Dollar amount of largest gift to date  
-```{r}
-fivenum(charity$lgif)
-boxplot(charity$lgif, main = "lgif Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/lgif_box.png')
-dev.off()
-hist(charity$lgif, main = "lgif Histogram", breaks = 50)
-dev.copy(png,'./EDA/gif_hist.png')
-dev.off()
+```r
+         Min   LH   Med   UH   Max
+## [1]     3   10    16   25   681
 ```
 ![lgif Boxplot](./figures/lgif_box.png)
 ![lgif Histogram](./figures/lgif_hist.png)
 
 #### rgif  
 Dollar amount of most recent gift  
-```{r}
-fivenum(charity$rgif)
-boxplot(charity$rgif, main = "rgif Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/rgif_box.png')
-dev.off()
-hist(charity$rgif, main = "rgif Histogram", breaks = 50)
-dev.copy(png,'./EDA/rgif_hist.png')
-dev.off()
+```r
+        Min   LH   Med   UH   Max
+## [1]    1    7    12   20   173
 ```
 ![rgif Boxplot](./figures/rgif_box.png)
 ![rgif Histogram](./figures/rgif_hist.png)
 
 #### tdon  
 Number of months since last donation  
-```{r}
-fivenum(charity$tdon)
-boxplot(charity$tdon, main = "tdon Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/tdon_box.png')
-dev.off()
-hist(charity$tdon, main = "tdon Histogram")
-dev.copy(png,'./EDA/tdon_hist.png')
-dev.off()
+```r
+        Min   LH   Med   UH   Max
+## [1]    5   15    18   22    40
 ```
 ![tdon Boxplot](./figures/tdon_box.png)
 ![tdon Histogram](./figures/tdon_hist.png)
 
 #### tlag  
 Number of months between first and second gift  
-```{r}
-fivenum(charity$tlag)
-boxplot(charity$tlag, main = "tlag Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/tlag_box.png')
-dev.off()
-hist(charity$tlag, main = "tlag Histogram")
-dev.copy(png,'./EDA/tlag_hist.png')
-dev.off()
+```r
+        Min   LH   Med   UH   Max
+## [1]    1    4    5     7    34
 ```
 ![tlag Boxplot](./figures/tlag_box.png)
 ![tlag Histogram](./figures/tlag_hist.png)
 
 #### agif  
 Average dollar amount of gifts to date  
-```{r}
-fivenum(charity$agif)
-boxplot(charity$agif, main = "agif Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/agif_box.png')
-dev.off()
-hist(charity$agif, main = "agif Histogram")
-dev.copy(png,'./EDA/agif_hist.png')
-dev.off()
+```r
+         Min    LH    Med    UH    Max
+## [1]  1.29   6.97  10.23 14.80  72.27
 ```
 ![agif Boxplot](./figures/agif_box.png)
 ![agif Histogram](./figures/agif_hist.png)
 
 #### DONR    
 Classification Response Variable (0 = Non-Donor, 1 = Donor)
-```{r}
-counts6 <- table(charity$donr)
-counts6
-barplot(counts6, main = "donr Barplot")
-dev.copy(png,'./EDA/donr_bar.png')
-dev.off()
+```r
+##    0    1 
+## 3008 2994
 ```
 ![donr Barplot](./figures/donr_bar.png)
 
 #### DAMT    
 Prediction Response Variable (Donation Amount in $)   
-```{r}
-fivenum(charity$damt)
-boxplot(charity$damt, main = "damt Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/damt_box.png')
-dev.off()
-hist(charity$damt, main = "damt Histogram")
-dev.copy(png,'./EDA/damt_hist.png')
-dev.off()
+```r
+        Min   LH   Med   UH   Max
+## [1]    0    0     0   14    27
 ```
 ![damt Boxplot](./figures/damt_box.png)
 ![damt Histogram](./figures/damt_hist.png)
