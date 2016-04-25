@@ -53,17 +53,12 @@ dev.off()
 #### wrat  
 Wealth Rating (Wealth rating uses median family income and population statistics from each area to index relative wealth within each state. The segments are denoted 0-9, with 9 being the highest wealth group and 0 being the lowest.)  
 ```{r}
-fivenum(charity$wrat)
-hist(charity$wrat, main = "wrat Histogram")
-dev.copy(png,'./EDA/wrat_hist.png')
-dev.off()
 counts5 <- table(charity$wrat)
 counts5
 barplot(counts5, main = "wrat Barplot")
 dev.copy(png,'./EDA/wrat_bar.png')
 dev.off()
 ```
-![wrat Histogram](./figures/wrat_hist.png)
 ![wrat Barplot](./figures/wrat_bar.png)
 
 
@@ -92,6 +87,8 @@ hist(charity$incm, main = "incm Histogram")
 dev.copy(png,'./EDA/incm_hist.png')
 dev.off()
 ```
+![incm Boxplot](./figures/incm_box.png)
+![incm Histogram](./figures/incm_hist.png)
 
 #### inca  
 Average Family Income in potential donor's neighborhood in $ thousands  
@@ -104,6 +101,8 @@ hist(charity$inca, main = "inca Histogram")
 dev.copy(png,'./EDA/inca_hist.png')
 dev.off()
 ```
+![inca Boxplot](./figures/inca_box.png)
+![inca Histogram](./figures/inca_hist.png)
 
 #### plow  
 Percent categorized as “low income” in potential donor's neighborhood  
@@ -116,6 +115,8 @@ hist(charity$plow, main = "plow Histogram")
 dev.copy(png,'./EDA/plow_hist.png')
 dev.off()
 ```
+![plow Boxplot](./figures/plow_box.png)
+![plow Histogram](./figures/plow_hist.png)
 
 #### npro  
 Lifetime number of promotions received to date  
@@ -128,6 +129,8 @@ hist(charity$npro, main = "npro Histogram")
 dev.copy(png,'./EDA/npro_hist.png')
 dev.off()
 ```
+![npro Boxplot](./figures/npro_box.png)
+![npro Histogram](./figures/npro_hist.png)
 
 #### tgif  
 Dollar amount of lifetime gifts to date  
@@ -140,6 +143,8 @@ hist(charity$tgif, main = "tgif Histogram", breaks = 50)
 dev.copy(png,'./EDA/tgif_hist.png')
 dev.off()
 ```
+![tgif Boxplot](./figures/tgif_box.png)
+![tgif Histogram](./figures/tgif_hist.png)
 
 #### lgif  
 Dollar amount of largest gift to date  
@@ -152,6 +157,8 @@ hist(charity$lgif, main = "lgif Histogram", breaks = 50)
 dev.copy(png,'./EDA/gif_hist.png')
 dev.off()
 ```
+![lgif Boxplot](./figures/lgif_box.png)
+![lgif Histogram](./figures/lgif_hist.png)
 
 #### rgif  
 Dollar amount of most recent gift  
@@ -164,6 +171,8 @@ hist(charity$rgif, main = "rgif Histogram", breaks = 50)
 dev.copy(png,'./EDA/rgif_hist.png')
 dev.off()
 ```
+![rgif Boxplot](./figures/rgif_box.png)
+![rgif Histogram](./figures/rgif_hist.png)
 
 #### tdon  
 Number of months since last donation  
@@ -176,6 +185,8 @@ hist(charity$tdon, main = "tdon Histogram")
 dev.copy(png,'./EDA/tdon_hist.png')
 dev.off()
 ```
+![tdon Boxplot](./figures/tdon_box.png)
+![tdon Histogram](./figures/tdon_hist.png)
 
 #### tlag  
 Number of months between first and second gift  
@@ -188,6 +199,8 @@ hist(charity$tlag, main = "tlag Histogram")
 dev.copy(png,'./EDA/tlag_hist.png')
 dev.off()
 ```
+![tlag Boxplot](./figures/tlag_box.png)
+![tlag Histogram](./figures/tlag_hist.png)
 
 #### agif  
 Average dollar amount of gifts to date  
@@ -200,6 +213,8 @@ hist(charity$agif, main = "agif Histogram")
 dev.copy(png,'./EDA/agif_hist.png')
 dev.off()
 ```
+![agif Boxplot](./figures/agif_box.png)
+![agif Histogram](./figures/agif_hist.png)
 
 #### DONR    
 Classification Response Variable (0 = Non-Donor, 1 = Donor)
@@ -210,6 +225,7 @@ barplot(counts6, main = "donr Barplot")
 dev.copy(png,'./EDA/donr_bar.png')
 dev.off()
 ```
+![donr Barplot](./figures/donr_bar.png)
 
 #### DAMT    
 Prediction Response Variable (Donation Amount in $)   
@@ -222,3 +238,5 @@ hist(charity$damt, main = "damt Histogram")
 dev.copy(png,'./EDA/damt_hist.png')
 dev.off()
 ```
+![damt Boxplot](./figures/damt_box.png)
+![damt Histogram](./figures/damt_hist.png)
