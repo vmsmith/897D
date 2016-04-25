@@ -42,73 +42,51 @@ $ part: Factor w/ 3 levels "test","train",..: 2 2 1 1 3 2 3 3 1 2
 
 #### chld  
 Number of children  
-```{r}
-counts2 <- table(charity$chld)
-counts2
-barplot(counts2, main = "chld Barplot")
-dev.copy(png,'./EDA/chld_bar.png')
-dev.off()
+```r
+##    0    1    2    3    4    5 
+## 2401  823 2494 1447  619  225
 ```
 ![chld](./figures/chld_bar.png)
 
 #### hinc  
 Household income (7 categories)  
-```{r}
-counts3 <- table(charity$hinc)
-counts3
-barplot(counts3, main = "hinc Barplot")
-dev.copy(png,'./EDA/hinc_bar.png')
-dev.off()
+```r
+##    1    2    3    4    5    6    7 
+##  522 1021  822 3462 1152  544  486
 ```
 ![hinc](./figures/hinc_bar.png)
 
 #### genf  
 Gender (0 = Male, 1 = Female)  
-```{r}
-counts4 <- table(charity$genf)
-counts4
-barplot(counts4, main = "genf Barplot")
-dev.copy(png,'./EDA/genf_bar.png')
-dev.off()
+```r
+##    0    1 
+## 3161 4848
 ```
 ![genf](./figures/genf_bar.png)
 
 #### wrat  
 Wealth Rating (Wealth rating uses median family income and population statistics from each area to index relative wealth within each state. The segments are denoted 0-9, with 9 being the highest wealth group and 0 being the lowest.)  
-```{r}
-counts5 <- table(charity$wrat)
-counts5
-barplot(counts5, main = "wrat Barplot")
-dev.copy(png,'./EDA/wrat_bar.png')
-dev.off()
+```r
+##    0    1    2    3    4    5    6    7    8    9 
+##  222  198  250  333  443  408  516  480 3021 2138
 ```
 ![wrat Barplot](./figures/wrat_bar.png)
 
 
 #### avhv  
 Average Home Value in potential donor's neighborhood in $ thousands  
-```{r}
-fivenum(charity$avhv)
-boxplot(charity$avhv, main = "vhv Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/avhv_box.png')
-dev.off()
-hist(charity$avhv, main = "avhv Histogram", xlim = c(0, 700))
-dev.copy(png,'./EDA/avhv_hist.png')
-dev.off()
+```r
+    Min   UH  Med   LH  Max
+##  48   133  169  217  710
 ```
 ![avhv Boxplot](./figures/avhv_box.png)
 ![avhv Histogram](./figures/avhv_hist.png)
 
 #### incm  
 Median Family Income in potential donor's neighborhood in $ thousands  
-```{r}
-fivenum(charity$incm)
-boxplot(charity$incm, main = "incm Boxplot", horizontal = TRUE)
-dev.copy(png,'./EDA/incm_box.png')
-dev.off()
-hist(charity$incm, main = "incm Histogram")
-dev.copy(png,'./EDA/incm_hist.png')
-dev.off()
+```r
+   Min   UH   Med   LH   Max
+##  48  133   169  217   710
 ```
 ![incm Boxplot](./figures/incm_box.png)
 ![incm Histogram](./figures/incm_hist.png)
