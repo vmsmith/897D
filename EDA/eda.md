@@ -31,14 +31,11 @@ $ donr: int  0 1 NA NA 1 1 0 0 NA 0 ...
 $ damt: int  0 15 NA NA 17 12 0 0 NA 0 ...  
 $ part: Factor w/ 3 levels "test","train",..: 2 2 1 1 3 2 3 3 1 2   
 
-#### home  
+### home  
 (0 = not a homeowner, 1 = homeowner)  
-```{r}
-counts1 <- table(charity$home)
-counts1
-barplot(counts1, main = "home Barplot")
-dev.copy(png,'./EDA/home_bar.png')
-dev.off()
+```r
+##    0    1 
+## 1069 6940
 ```
 ![home Barplot](./figures/home_bar.png)
 
