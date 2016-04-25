@@ -40,7 +40,7 @@ $ part: Factor w/ 3 levels "test","train",..: 2 2 1 1 3 2 3 3 1 2
 ![home Barplot](./figures/home_bar.png)
 
 
-#### chld  
+### chld  
 Number of children  
 ```r
 ##    0    1    2    3    4    5 
@@ -48,7 +48,7 @@ Number of children
 ```
 ![chld](./figures/chld_bar.png)
 
-#### hinc  
+### hinc  
 Household income (7 categories)  
 ```r
 ##    1    2    3    4    5    6    7 
@@ -56,7 +56,7 @@ Household income (7 categories)
 ```
 ![hinc](./figures/hinc_bar.png)
 
-#### genf  
+### genf  
 Gender (0 = Male, 1 = Female)  
 ```r
 ##    0    1 
@@ -64,7 +64,7 @@ Gender (0 = Male, 1 = Female)
 ```
 ![genf](./figures/genf_bar.png)
 
-#### wrat  
+### wrat  
 Wealth Rating (Wealth rating uses median family income and population statistics from each area to index relative wealth within each state. The segments are denoted 0-9, with 9 being the highest wealth group and 0 being the lowest.)  
 ```r
 ##    0    1    2    3    4    5    6    7    8    9 
@@ -73,7 +73,7 @@ Wealth Rating (Wealth rating uses median family income and population statistics
 ![wrat Barplot](./figures/wrat_bar.png)
 
 
-#### avhv  
+### avhv  
 Average Home Value in potential donor's neighborhood in $ thousands  
 ```r
     Min   LH  Med   UH  Max
@@ -82,7 +82,7 @@ Average Home Value in potential donor's neighborhood in $ thousands
 ![avhv Boxplot](./figures/avhv_box.png)
 ![avhv Histogram](./figures/avhv_hist.png)
 
-#### incm  
+### incm  
 Median Family Income in potential donor's neighborhood in $ thousands  
 ```r
    Min   LH   Med   UH   Max
@@ -91,7 +91,7 @@ Median Family Income in potential donor's neighborhood in $ thousands
 ![incm Boxplot](./figures/incm_box.png)
 ![incm Histogram](./figures/incm_hist.png)
 
-#### inca  
+### inca  
 Average Family Income in potential donor's neighborhood in $ thousands  
 ```r
         Min   LH   Med   UH   Max
@@ -100,7 +100,7 @@ Average Family Income in potential donor's neighborhood in $ thousands
 ![inca Boxplot](./figures/inca_box.png)
 ![inca Histogram](./figures/inca_hist.png)
 
-#### plow  
+### plow  
 Percent categorized as “low income” in potential donor's neighborhood  
 ```r
         Min   LH   Med   UH   Max
@@ -109,7 +109,7 @@ Percent categorized as “low income” in potential donor's neighborhood
 ![plow Boxplot](./figures/plow_box.png)
 ![plow Histogram](./figures/plow_hist.png)
 
-#### npro  
+### npro  
 Lifetime number of promotions received to date  
 ```r
          Min   LH   Med   UH   Max
@@ -118,7 +118,7 @@ Lifetime number of promotions received to date
 ![npro Boxplot](./figures/npro_box.png)
 ![npro Histogram](./figures/npro_hist.png)
 
-#### tgif  
+### tgif  
 Dollar amount of lifetime gifts to date  
 ```r
          Min   LH   Med   UH   Max
@@ -127,7 +127,7 @@ Dollar amount of lifetime gifts to date
 ![tgif Boxplot](./figures/tgif_box.png)
 ![tgif Histogram](./figures/tgif_hist.png)
 
-#### lgif  
+### lgif  
 Dollar amount of largest gift to date  
 ```r
          Min   LH   Med   UH   Max
@@ -136,7 +136,7 @@ Dollar amount of largest gift to date
 ![lgif Boxplot](./figures/lgif_box.png)
 ![lgif Histogram](./figures/lgif_hist.png)
 
-#### rgif  
+### rgif  
 Dollar amount of most recent gift  
 ```r
         Min   LH   Med   UH   Max
@@ -145,7 +145,7 @@ Dollar amount of most recent gift
 ![rgif Boxplot](./figures/rgif_box.png)
 ![rgif Histogram](./figures/rgif_hist.png)
 
-#### tdon  
+### tdon  
 Number of months since last donation  
 ```r
         Min   LH   Med   UH   Max
@@ -154,7 +154,7 @@ Number of months since last donation
 ![tdon Boxplot](./figures/tdon_box.png)
 ![tdon Histogram](./figures/tdon_hist.png)
 
-#### tlag  
+### tlag  
 Number of months between first and second gift  
 ```r
         Min   LH   Med   UH   Max
@@ -163,7 +163,7 @@ Number of months between first and second gift
 ![tlag Boxplot](./figures/tlag_box.png)
 ![tlag Histogram](./figures/tlag_hist.png)
 
-#### agif  
+### agif  
 Average dollar amount of gifts to date  
 ```r
          Min    LH    Med    UH    Max
@@ -172,7 +172,7 @@ Average dollar amount of gifts to date
 ![agif Boxplot](./figures/agif_box.png)
 ![agif Histogram](./figures/agif_hist.png)
 
-#### DONR    
+### DONR    
 Classification Response Variable (0 = Non-Donor, 1 = Donor)
 ```r
 ##    0    1 
@@ -180,7 +180,7 @@ Classification Response Variable (0 = Non-Donor, 1 = Donor)
 ```
 ![donr Barplot](./figures/donr_bar.png)
 
-#### DAMT    
+### DAMT    
 Prediction Response Variable (Donation Amount in $)   
 ```r
         Min   LH   Med   UH   Max
