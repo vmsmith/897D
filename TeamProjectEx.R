@@ -103,12 +103,10 @@ data.test.std <- data.frame(x.test.std)
 
 ####################################################################################
 #
-#                          Classification Modeling
+#           Classification Modeling - Linear Discriminant Analysis
 #
 ####################################################################################
-#
-#     Linear discriminant analysis
-#
+
 library(MASS)
 
 # Fit a model using all variables and the standardized training data
@@ -129,7 +127,7 @@ post.valid.lda1 <- predict(model.lda1, data.valid.std.c)$posterior[ , 2] # n.val
 
 
 #
-# calculate ordered profit function using average donation = $14.50 and mailing cost = $2
+#     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
 #
 # This function begins by ordering the posterior probabilities in decreasingn order.
 # From each observation, it subtracts 2 (the cost of the mailing)
@@ -146,8 +144,15 @@ n.mail.valid <- which.max(profit.lda1) # number of mailings that maximizes profi
 c(n.mail.valid, max(profit.lda1)) # report number of mailings and maximum profit
 # 1329.0 11624.5
 
-cutoff.lda1 <- sort(post.valid.lda1, decreasing=T)[n.mail.valid+1] # set cutoff based on n.mail.valid
-chat.valid.lda1 <- ifelse(post.valid.lda1>cutoff.lda1, 1, 0) # mail to everyone above the cutoff
+#
+#     Sets a cutoff point based on the maximum that was just calculated
+#
+# Sorts the posterior probabilities in decreasing order
+# Indexes the sorted list using the maximum that was calculated
+cutoff.lda1 <- sort(post.valid.lda1, decreasing = T)[n.mail.valid + 1] # set cutoff based on n.mail.valid
+# Subsets the posterior probabilities based on the index
+chat.valid.lda1 <- ifelse(post.valid.lda1 > cutoff.lda1, 1, 0) # mail to everyone above the cutoff
+# Computes confusion matrix
 table(chat.valid.lda1, c.valid) # classification table
 #               c.valid
 #chat.valid.lda1   0   1
@@ -156,19 +161,23 @@ table(chat.valid.lda1, c.valid) # classification table
 # check n.mail.valid = 344+985 = 1329
 # check profit = 14.5*985-2*1329 = 11624.5
 
+####################################################################################
 #
-#    Logistic regression
+#                 Classification Modeling - Logistic Regression
 #
+####################################################################################
+
 # Fit a model using all variables and the standardized training data
 model.log1 <- glm(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc^2) + genf + wrat + 
                     avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
                   data.train.std.c, family=binomial("logit"))
 
+# Make a prediction using the fitted model and the standardized validation data
 post.valid.log1 <- predict(model.log1, data.valid.std.c, type="response") # n.valid post probs
 
 # calculate ordered profit function using average donation = $14.50 and mailing cost = $2
 
-profit.log1 <- cumsum(14.5*c.valid[order(post.valid.log1, decreasing=T)]-2)
+profit.log1 <- cumsum(14.5 * c.valid[order(post.valid.log1, decreasing = T)] - 2)
 plot(profit.log1) # see how profits change as more mailings are made
 n.mail.valid <- which.max(profit.log1) # number of mailings that maximizes profits
 c(n.mail.valid, max(profit.log1)) # report number of mailings and maximum profit
