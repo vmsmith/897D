@@ -218,7 +218,7 @@ table(chat.valid.log1, c.valid) # classification table
 
 ###################################################################################
 #
-#                 Select the model and calculate mailings
+#           Select the classification model and calculate mailings
 #
 ###################################################################################
 
@@ -263,40 +263,63 @@ table(chat.test)
 #
 ####################################################################################
 
-# Least squares regression
-
+# Fit a model using all variables and the standardized training data
 model.ls1 <- lm(damt ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + genf + wrat + 
                   avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
                 data.train.std.y)
 
+# Make a prediction using the fitted lm model and the standardized validation data
 pred.valid.ls1 <- predict(model.ls1, newdata = data.valid.std.y) # validation predictions
+
+# Compute the mean prediction error
 mean((y.valid - pred.valid.ls1)^2) # mean prediction error
 # 1.867523
+
+# Compute the standard error
 sd((y.valid - pred.valid.ls1)^2)/sqrt(n.valid.y) # std error
 # 0.1696615
 
-# drop wrat for illustrative purposes
+#
+#     Drop wrat for illustrative purposes
+#
+# Simply list all variables except wrat
 model.ls2 <- lm(damt ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + genf + 
                   avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
                 data.train.std.y)
 
+# Make a prediction using the new fitted lm model and the standardized validation data
 pred.valid.ls2 <- predict(model.ls2, newdata = data.valid.std.y) # validation predictions
+# Compute the new mean prediction error
 mean((y.valid - pred.valid.ls2)^2) # mean prediction error
 # 1.867433
+
+# Compute the new standard error
 sd((y.valid - pred.valid.ls2)^2)/sqrt(n.valid.y) # std error
 # 0.1696498
 
-# Results
+# Compare the mean prediction errors of the two models
 
 # MPE  Model
 # 1.867523 LS1
 # 1.867433 LS2
 
-# select model.ls2 since it has minimum mean prediction error in the validation sample
+###################################################################################
+#
+#           Select the regression model and calculate test results
+#
+###################################################################################
 
+# Select model.ls2 since it has minimum mean prediction error in the validation sample
+
+# Make a prediction using the selected fitted lm model and the standardized test data
 yhat.test <- predict(model.ls2, newdata = data.test.std) # test predictions
 
-# Save final results for both classification and regression
+###################################################################################
+#
+#           Save the final results for both classificatino and regression
+#
+###################################################################################
+
 
 length(chat.test) # check length = 2007
 length(yhat.test) # check length = 2007
