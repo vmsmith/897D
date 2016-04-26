@@ -1,6 +1,10 @@
 charity <- read.csv("~/Documents/teaching/psu/charity.csv")
 
-# predictor transformations
+####################################################################################
+#
+#                     Example predictor transformations
+#
+####################################################################################
 
 charity.t <- charity
 charity.t$avhv <- log(charity.t$avhv)
@@ -72,9 +76,9 @@ apply(x.train.std, 2, sd) # check unit sd
 #
 #     Create data frames from standardized training data for donr and damt
 #
-# Create a training donr data frame with standardized data
+# Create a training donr data frame with standardized data and the donr vector
 data.train.std.c <- data.frame(x.train.std, donr=c.train) # to classify donr
-# Create a training damt data frame with standardized data
+# Create a training damt data frame with standardized data and the damt vector
 data.train.std.y <- data.frame(x.train.std[c.train==1,], damt=y.train) # to predict damt when donr=1
 
 #
@@ -89,7 +93,7 @@ data.valid.std.c <- data.frame(x.valid.std, donr=c.valid) # to classify donr
 data.valid.std.y <- data.frame(x.valid.std[c.valid==1,], damt=y.valid) # to predict damt when donr=1
 
 #
-#
+#     Standardize the test data
 #
 # Standardize the test set using the training mean and training sd;
 # Create a matrix and transpose it
@@ -102,11 +106,12 @@ data.test.std <- data.frame(x.test.std)
 #                          Classification Modeling
 #
 ####################################################################################
-
-# linear discriminant analysis
-
+#
+#     Linear discriminant analysis
+#
 library(MASS)
 
+# Fit a model using all variables and the standardized training data
 model.lda1 <- lda(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc^2) + genf + wrat + 
                     avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
                   data.train.std.c) # include additional terms on the fly using I()
@@ -114,7 +119,11 @@ model.lda1 <- lda(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc
 # Note: strictly speaking, LDA should not be used with qualitative predictors,
 # but in practice it often is if the goal is simply to find a good predictive model
 
+
+
 post.valid.lda1 <- predict(model.lda1, data.valid.std.c)$posterior[,2] # n.valid.c post probs
+
+
 
 # calculate ordered profit function using average donation = $14.50 and mailing cost = $2
 
@@ -134,8 +143,10 @@ table(chat.valid.lda1, c.valid) # classification table
 # check n.mail.valid = 344+985 = 1329
 # check profit = 14.5*985-2*1329 = 11624.5
 
-# logistic regression
-
+#
+#    Logistic regression
+#
+# Fit a model using all variables and the standardized training data
 model.log1 <- glm(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc^2) + genf + wrat + 
                     avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
                   data.train.std.c, family=binomial("logit"))
