@@ -1,10 +1,11 @@
 #### Tue, 26 Apr
 * 8:00 pm
   * Topics to discuss
+    * LDA output clarification  
+    * Order of process: transformations, scaling, feature selection
     * Variable selection
-      * Random Forests & Importance
       * Pairs plots and other predictor/response correlation methods
-
+      * Random Forests & Importance
 
 #### Sun, 24 Apr 
 * 4:40 pm - Next Zoom at 8:00 pm EST
