@@ -7,25 +7,57 @@ charity.t$avhv <- log(charity.t$avhv)
 # add further transformations if desired
 # for example, some statistical methods can struggle when predictors are highly skewed
 
-# set up data for analysis
+####################################################################################
+#
+#                          Set up data for analysis
+#
+####################################################################################
 
-data.train <- charity.t[charity$part=="train",]
-x.train <- data.train[,2:21]
-c.train <- data.train[,22] # donr
+#
+#     Create the training set
+#
+# Subset data on "part == train"
+data.train <- charity.t[charity$part == "train", ]
+# Create the training set design matrix, leaving out ID, donr, and damt
+x.train <- data.train[ , 2:21]
+# Create the response variable for the classification (donr)
+c.train <- data.train[ , 22] # donr
+# Determine number of elements in the classification response variable
 n.train.c <- length(c.train) # 3984
-y.train <- data.train[c.train==1,23] # damt for observations with donr=1
+# Create the response variable for the regression
+y.train <- data.train[c.train == 1, 23] # damt for observations with donr = 1
+# Determine the number of elements the regression response variable
 n.train.y <- length(y.train) # 1995
 
-data.valid <- charity.t[charity$part=="valid",]
-x.valid <- data.valid[,2:21]
-c.valid <- data.valid[,22] # donr
+#
+#     Create the validation set
+#
+# Subset data on "part == valid"
+data.valid <- charity.t[charity$part == "valid", ]
+# Create the validation set design matrix, leaving out ID, donr, and damt
+x.valid <- data.valid[ , 2:21]
+# Create the response variable for the classification (donr)
+c.valid <- data.valid[ , 22] # donr
+# Determine the number of elements in the classification response variable
 n.valid.c <- length(c.valid) # 2018
-y.valid <- data.valid[c.valid==1,23] # damt for observations with donr=1
+# Create the response variable for the regression
+y.valid <- data.valid[c.valid == 1, 23] # damt for observations with donr=1
+# Determine the number of elements in the regression response variable
 n.valid.y <- length(y.valid) # 999
 
+#
+# Create the test set
+#
+# Subset data on "part == test"
 data.test <- charity.t[charity$part=="test",]
+
 n.test <- dim(data.test)[1] # 2007
+
 x.test <- data.test[,2:21]
+
+
+
+
 
 x.train.mean <- apply(x.train, 2, mean)
 x.train.sd <- apply(x.train, 2, sd)
