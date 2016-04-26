@@ -1,3 +1,11 @@
+#### Tue, 26 Apr
+* 8:00 pm
+  * Topics to discuss
+    * Variable selection
+      * Random Forests & Importance
+      * Pairs plots and other predictor/response correlation methods
+
+
 #### Sun, 24 Apr 
 * 4:40 pm - Next Zoom at 8:00 pm EST
 
