@@ -135,7 +135,6 @@ post.valid.lda1 <- predict(model.lda1, data.valid.std.c)$posterior[ , 2] # n.val
 # It multiplies that by 14.5, the average donation
 # It calculates the cumulative sum and saves each cumulative sum to profit.lda1
 profit.lda1 <- cumsum(14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2)
-
 # Show how profits increase, peak, and then decline with more mailings
 plot(profit.lda1) # see how profits change as more mailings are made
 # Identifies the maximum profit point
@@ -172,19 +171,37 @@ model.log1 <- glm(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc
                     avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
                   data.train.std.c, family=binomial("logit"))
 
-# Make a prediction using the fitted model and the standardized validation data
+# Make a prediction using the fitted glm model and the standardized validation data
+# This produces a vector of probabilities
 post.valid.log1 <- predict(model.log1, data.valid.std.c, type="response") # n.valid post probs
 
-# calculate ordered profit function using average donation = $14.50 and mailing cost = $2
-
+#
+#     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
+#     Identical to LDA
+#
+# This function begins by ordering the posterior probabilities in decreasingn order.
+# From each observation, it subtracts 2 (the cost of the mailing)
+# It multiplies that by c.valid, which is either a 0 or a 1
+# It multiplies that by 14.5, the average donation
+# It calculates the cumulative sum and saves each cumulative sum to profit.lda1
 profit.log1 <- cumsum(14.5 * c.valid[order(post.valid.log1, decreasing = T)] - 2)
+# Show how profits increase, peak, and then decline with more mailings
 plot(profit.log1) # see how profits change as more mailings are made
+# Identifies the maximum profit point
 n.mail.valid <- which.max(profit.log1) # number of mailings that maximizes profits
+# Identifies the maximum profit point and associated profit
 c(n.mail.valid, max(profit.log1)) # report number of mailings and maximum profit
 # 1291.0 11642.5
 
-cutoff.log1 <- sort(post.valid.log1, decreasing=T)[n.mail.valid+1] # set cutoff based on n.mail.valid
+#
+#     Sets a cutoff point based on the maximum that was just calculated
+#
+# Sorts the posterior probabilities in decreasing order
+# Indexes the sorted list using the maximum that was calculated
+cutoff.log1 <- sort(post.valid.log1, decreasing = T)[n.mail.valid + 1] # set cutoff based on n.mail.valid
+# Subsets the posterior probabilities based on the index
 chat.valid.log1 <- ifelse(post.valid.log1>cutoff.log1, 1, 0) # mail to everyone above the cutoff
+# Computes confusion matrix
 table(chat.valid.log1, c.valid) # classification table
 #               c.valid
 #chat.valid.log1   0   1
@@ -199,19 +216,35 @@ table(chat.valid.log1, c.valid) # classification table
 # 1329   11624.5 LDA1
 # 1291   11642.5 Log1
 
-# select model.log1 since it has maximum profit in the validation sample
+###################################################################################
+#
+#                 Select the model and calculate mailings
+#
+###################################################################################
 
+# Make a prediction using the fitted glm model and the standardized test data
+# This produces a vector of probabilities
 post.test <- predict(model.log1, data.test.std, type="response") # post probs for test data
 
-# Oversampling adjustment for calculating number of mailings for test set
-
+#
+# Make the oversampling adjustment for calculating number of mailings for test set
+#
+# 
+# Identifies the maximum profit point (should be the same as in logistic regression)
 n.mail.valid <- which.max(profit.log1)
+# Typical response rate
 tr.rate <- .1 # typical response rate is .1
+# Actual validation response rate
 vr.rate <- .5 # whereas validation response rate is .5
+# Adjust for mail = yes
 adj.test.1 <- (n.mail.valid/n.valid.c)/(vr.rate/tr.rate) # adjustment for mail yes
+# Adjust for mail = no
 adj.test.0 <- ((n.valid.c-n.mail.valid)/n.valid.c)/((1-vr.rate)/(1-tr.rate)) # adjustment for mail no
-adj.test <- adj.test.1/(adj.test.1+adj.test.0) # scale into a proportion
-n.mail.test <- round(n.test*adj.test, 0) # calculate number of mailings for test set
+# Create a scaled proportion
+adj.test <- adj.test.1/(adj.test.1 + adj.test.0) # scale into a proportion
+# Calculate the number of mailings in test set
+n.mail.test <- round(n.test * adj.test, 0) # calculate number of mailings for test set
+
 
 cutoff.test <- sort(post.test, decreasing=T)[n.mail.test+1] # set cutoff based on n.mail.test
 chat.test <- ifelse(post.test>cutoff.test, 1, 0) # mail to everyone above the cutoff
