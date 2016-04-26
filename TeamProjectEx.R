@@ -245,9 +245,11 @@ adj.test <- adj.test.1/(adj.test.1 + adj.test.0) # scale into a proportion
 # Calculate the number of mailings in test set
 n.mail.test <- round(n.test * adj.test, 0) # calculate number of mailings for test set
 
-
-cutoff.test <- sort(post.test, decreasing=T)[n.mail.test+1] # set cutoff based on n.mail.test
-chat.test <- ifelse(post.test>cutoff.test, 1, 0) # mail to everyone above the cutoff
+# Indexes the sorted list using the maximum that was calculated
+cutoff.test <- sort(post.test, decreasing=T)[n.mail.test + 1] # set cutoff based on n.mail.test
+# Subsets the posterior probabilities based on the index
+chat.test <- ifelse(post.test > cutoff.test, 1, 0) # mail to everyone above the cutoff
+# Displays 1s and 0s in a table
 table(chat.test)
 #    0    1 
 # 1676  331
@@ -308,8 +310,8 @@ yhat.test[1:10] # check this consists of plausible predictions of damt
 ####################################################################################
 
 
-ip <- data.frame(chat=chat.test, yhat=yhat.test) # data frame with two variables: chat and yhat
-write.csv(ip, file="~/Documents/teaching/psu/ip.csv", 
-          row.names=FALSE) # use group member initials for file name
+ip <- data.frame(chat = chat.test, yhat = yhat.test) # data frame with two variables: chat and yhat
+write.csv(ip, file = "~/Documents/teaching/psu/ip.csv", 
+          row.names = FALSE) # use group member initials for file name
 
 # submit the csv file in Angel for evaluation based on actual test donr and damt values
