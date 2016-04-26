@@ -120,16 +120,29 @@ model.lda1 <- lda(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc
 # but in practice it often is if the goal is simply to find a good predictive model
 
 
+# For each observation, the LDA predict function produces a list with three items: (1) a class, 
+# (2) the posterior probability of the class, and (3) _______. 
+# The posterior probability has two components: (1) _____, (2) the posterior probability.
+# This code gives us the posterior probability of each observation in the validation set belonging 
+# to the class it was predicted to be in
+post.valid.lda1 <- predict(model.lda1, data.valid.std.c)$posterior[ , 2] # n.valid.c post probs
 
-post.valid.lda1 <- predict(model.lda1, data.valid.std.c)$posterior[,2] # n.valid.c post probs
 
-
-
+#
 # calculate ordered profit function using average donation = $14.50 and mailing cost = $2
+#
+# This function begins by ordering the posterior probabilities in decreasingn order.
+# From each observation, it subtracts 2 (the cost of the mailing)
+# It multiplies that by c.valid, which is either a 0 or a 1
+# It multiplies that by 14.5, the average donation
+# It calculates the cumulative sum and saves each cumulative sum to profit.lda1
+profit.lda1 <- cumsum(14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2)
 
-profit.lda1 <- cumsum(14.5*c.valid[order(post.valid.lda1, decreasing=T)]-2)
+# Show how profits increase, peak, and then decline with more mailings
 plot(profit.lda1) # see how profits change as more mailings are made
+# Identifies the maximum profit point
 n.mail.valid <- which.max(profit.lda1) # number of mailings that maximizes profits
+# Identifies the maximum profit point and associated profit
 c(n.mail.valid, max(profit.lda1)) # report number of mailings and maximum profit
 # 1329.0 11624.5
 
