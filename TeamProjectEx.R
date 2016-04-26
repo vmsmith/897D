@@ -80,7 +80,8 @@ data.train.std.y <- data.frame(x.train.std[c.train==1,], damt=y.train) # to pred
 #
 #    Standardize the validation data
 #
-# Standardize the validation set using the training mean and training sd
+# Standardize the validation set using the training mean and training sd;
+# Create a matrix and transpose it
 x.valid.std <- t((t(x.valid)-x.train.mean)/x.train.sd) # standardize using training mean and sd
 # Create validation donr data frame with standardized validation data
 data.valid.std.c <- data.frame(x.valid.std, donr=c.valid) # to classify donr
@@ -90,17 +91,17 @@ data.valid.std.y <- data.frame(x.valid.std[c.valid==1,], damt=y.valid) # to pred
 #
 #
 #
-#
+# Standardize the test set using the training mean and training sd;
+# Create a matrix and transpose it
 x.test.std <- t((t(x.test)-x.train.mean)/x.train.sd) # standardize using training mean and sd
-#
+# Create a data frame from the transposed matrix
 data.test.std <- data.frame(x.test.std)
 
-
-
-
-
-
-# Classification modeling
+####################################################################################
+#
+#                          Classification Modeling
+#
+####################################################################################
 
 # linear discriminant analysis
 
@@ -188,7 +189,11 @@ table(chat.test)
 
 # See below for saving chat.test into a file for submission
 
-# Prediction modeling
+####################################################################################
+#
+#                         Regression Modeling
+#
+####################################################################################
 
 # Least squares regression
 
@@ -229,6 +234,13 @@ length(chat.test) # check length = 2007
 length(yhat.test) # check length = 2007
 chat.test[1:10] # check this consists of 0s and 1s
 yhat.test[1:10] # check this consists of plausible predictions of damt
+
+####################################################################################
+#
+#                         Write to a file for submission
+#
+####################################################################################
+
 
 ip <- data.frame(chat=chat.test, yhat=yhat.test) # data frame with two variables: chat and yhat
 write.csv(ip, file="~/Documents/teaching/psu/ip.csv", 
