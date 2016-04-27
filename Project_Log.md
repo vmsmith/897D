@@ -5,6 +5,7 @@
   * Rick - Find online information about this problem
   * Rick - Investigate other feature selection methods
   * Rick - Check on standardizing weird variables
+  * Rick - Over weighting
   * Cheryl - Send pairs plot code to Rick
   * Cheryl - Random Forest & Feature Importance
   * Keith - Proceed with regression in a logical manner: OLS, Best Subset, Ridge, Lasso
