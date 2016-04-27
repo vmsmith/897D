@@ -1,11 +1,14 @@
 #### Tue, 26 Apr
 * 8:00 pm
-  * Topics to discuss
-    * LDA output clarification  
-    * Order of process: transformations, scaling, feature selection
-    * Variable selection
-      * Pairs plots and other predictor/response correlation methods
-      * Random Forests & Importance
+  * Rick - LDA output clarification
+  * Rick - Finish documenting code
+  * Rick - Find online information about this problem
+  * Rick - Investigate other feature selection methods
+  * Cheryl - Send pairs plot code to Rick
+  * Cheryl - Random Forest & Feature Importance
+  * Keith - Proceed with regression in a logical manner: OLS, Best Subset, Ridge, Lasso
+
+* Next meeting: 6:00 pm Thursday
 
 #### Sun, 24 Apr 
 * 4:40 pm - Next Zoom at 8:00 pm EST
