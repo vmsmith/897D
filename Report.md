@@ -4,6 +4,11 @@
 
 #### Analysis
 
+##### Pre-processing
+
+##### Regression
+
+##### Classification 
 
 
 #### Results
@@ -12,7 +17,7 @@
 
 #### Conclusion
 
-
+#### References
 
 #### Appendix A - Data
 
