@@ -214,12 +214,18 @@ post.valid.log1 <- predict(model.log1, data.valid.std.c, type="response") # n.va
 #     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
 #     Identical to LDA
 #
-# This function begins by ordering the posterior probabilities in decreasingn order.
-# From each observation, it subtracts 2 (the cost of the mailing)
-# It multiplies that by c.valid, which is either a 0 or a 1
-# It multiplies that by 14.5, the average donation
-# It calculates the cumulative sum and saves each cumulative sum to profit.lda1
+# This function begins by ordering the posterior probabilities in decreasing order:
+#      order(post.valid.lda1, decreasing = T)
+# Using the output of step 1 as an index, it isolates actual donors in the validation set:
+#     c.valid[order(post.valid.lda1, decreasing = T)]
+# It multiplies each result by $14.50 (the average donation), then subtracts 2
+#     14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2 (the cost of mailing)
+# Finally, it calculates the cumulative sum and saves each cumulative sum to profit.log1
+# Note 1: the order() function behaves slightly differently than the sort() function used in a few lines
+# Note 2: This is actually a series of $12.50 add-ons, until a certain point, and then it is 
+#         cumulative $2.00 subtractions.
 profit.log1 <- cumsum(14.5 * c.valid[order(post.valid.log1, decreasing = T)] - 2)
+
 # Show how profits increase, peak, and then decline with more mailings
 plot(profit.log1) # see how profits change as more mailings are made
 # Identifies the maximum profit point
@@ -250,6 +256,75 @@ table(chat.valid.log1, c.valid) # classification table
 # n.mail Profit  Model
 # 1329   11624.5 LDA1
 # 1291   11642.5 Log1
+
+####################################################################################
+#
+#                          K-nearest Neighbors
+#
+####################################################################################
+
+library(class)
+
+set.seed(1)
+
+# The conventional wisdom is to set k as the square root of n.
+sqrt(nrow(x.train.std)) # = 63.11894
+
+# We are going to iterate through 1 - 63 (the square root of n) using odd numbers
+# to break any ties
+k_seq <- seq(1, 63, 2)
+
+# Create a container to hold the validation errors
+knnmean <- rep(0, 32)
+
+# Iterate through values of k = 1 through k = 63
+for (i in 1:length(k_seq)) {
+  set.seed(1)
+  knn.pred <- knn(x.train.std, x.valid.std, c.train, k = i)
+  knnmean[i] <- mean(knn.pred != c.valid)
+}
+
+# Which k provided the lowest validation error
+which.min(knnmean) # 10
+k_seq[which.min(knnmean)] # 19
+
+# Run the knn prediction function using the best value of k
+knn.pred <- knn(x.train.std, x.valid.std, c.train, k = 19)
+
+#
+#     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
+#     Similar, but not identical to, LDA and Logistic Regression
+#
+# This function begins by ordering the posterior probabilities -- 1s and 0s -- in decreasing order:
+#      order(post.valid.lda1, decreasing = T)
+# Using the output of step 1 as an index, it isolates actual donors in the validation set:
+#     c.valid[order(post.valid.lda1, decreasing = T)]
+# It multiplies each result by $14.50 (the average donation), then subtracts 2
+#     14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2 (the cost of mailing)
+# Finally, it calculates the cumulative sum and saves each cumulative sum to profit.knn
+# Note 1: the order() function behaves slightly differently than the sort() function used in a few lines
+# Note 2: This is actually a series of $12.50 add-ons, until a certain point, and then it is 
+#         cumulative $2.00 subtractions.
+profit.knn <- cumsum(14.5 * c.valid[order(knn.pred, decreasing = T)] - 2)
+
+# Show how profits increase, peak, and then decline with more mailings
+plot(profit.knn)
+
+# Identifies the maximum profit point
+n.mail.valid <- which.max(profit.knn)
+
+# Identifies the maximum profit point and associated profit
+c(n.mail.valid, max(profit.knn))
+
+table(knn.pred, c.valid)
+#          c.valid
+#knn.pred   0   1
+#       0 677  48
+#       1 342 951
+# check n.mail.valid = 342 + 951 = 1291
+# check profit = 14.5*951-2*1293 = 11203.5
+
+
 
 ###################################################################################
 #
