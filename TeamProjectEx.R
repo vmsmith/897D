@@ -2,14 +2,34 @@ charity <- read.csv("~/Documents/teaching/psu/charity.csv")
 
 ####################################################################################
 #
-#                     Example predictor transformations
+#                     Predictor transformations
 #
 ####################################################################################
+# install.packages("caret", dependencies = c("Depends", "Suggests")
+# library(caret)
+# library(dplyr)
 
+# Create a temporary data set without response variables
+charity.bc <- select(charity, -(ID, donr, damt, part))
+
+# Apply BoxCox method to identify transformations
+charity.bc.obj <- preProcess(charity.bc, method = "BoxCox") 
+
+# Print transformations
+charity.bc.obj$bc
+
+# Transform variables in accordance with Box Cox output
 charity.t <- charity
 charity.t$avhv <- log(charity.t$avhv)
-# add further transformations if desired
-# for example, some statistical methods can struggle when predictors are highly skewed
+charity.t$incm <- log(charity.t$incm)
+charity.t$inca <- log(charity.t$inca)
+charity.t$npro <- (charity.t$npro) ^ 0.6
+charity.t$tgif <- (charity.t$tgif) ^ -0.3
+charity.t$lgif <- log(charity.t$lgif)
+charity.t$rgif <- log(charity.t$rgif)
+charity.t$tdon <- log(charity.t$tdon)
+charity.t$tlag <- (charity.t$tlag) ^ -0.4
+charity.t$agif <- log(charity.t$agif)
 
 ####################################################################################
 #
