@@ -30,7 +30,11 @@
 
 ###### K-nearest Neighbors
 
+[Venerables, 2002]
+
 ###### Decision Trees
+
+[Liaw, 2002]
 
 ###### Support Vector Machines
 
@@ -41,7 +45,11 @@
 #### References
 
 Kuhn, M. (2016). caret: Classification and Regression Training. R package version 6.0-68.   
-https://CRAN.R-project.org/package=caret
+https://CRAN.R-project.org/package=caret  
+
+Liaw, A. and M. Wiener (2002). Classification and Regression by randomForest. R News 2(3), 18--22  
+
+Venables, W. N. & Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth Edition. Springer, New York. ISBN 0-387-95457-0  
 
 #### Appendix A - Data
 
