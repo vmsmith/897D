@@ -1,6 +1,5 @@
 #### Tue, 26 Apr
 * 8:00 pm
-  * Rick - LDA output clarification
   * Rick - Finish documenting code
   * Rick - Find online information about this problem
   * Rick - Investigate other feature selection methods
