@@ -45,10 +45,8 @@ https://CRAN.R-project.org/package=caret
 
 #### Appendix A - Data
 
+#### Appendix B - R Code for Pre-Processing
 
+#### Appendix C - R Code for Analysis
 
-#### Appendix B - R Code and Analysis
-
-
-
-#### Appendix C - System
+#### Appendix D - System
