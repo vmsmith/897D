@@ -5,9 +5,9 @@
 * Rick - Over-weighting
 * Cheryl - Start SVM
 * Cheryl - Review K-nearest neighbors
-* Keith - plow variable 
+* Keith - plow variable
 * Keith - Review k-nearest neighbors
-* Keith - Continue regression
+* Keith - Continue regression  
 
 * Next meeting: 12:00 Saturday
 
