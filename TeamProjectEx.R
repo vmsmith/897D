@@ -259,13 +259,11 @@ table(chat.valid.log1, c.valid) # classification table
 
 ####################################################################################
 #
-#                          K-nearest Neighbors
+#                   Classification Modeling - K-nearest Neighbors
 #
 ####################################################################################
 
 library(class)
-
-set.seed(1)
 
 # The conventional wisdom is to set k as the square root of n.
 sqrt(nrow(x.train.std)) # = 63.11894
@@ -315,6 +313,9 @@ n.mail.valid <- which.max(profit.knn)
 
 # Identifies the maximum profit point and associated profit
 c(n.mail.valid, max(profit.knn))
+
+# Because knn produces either a 1 (donor) or 0 (non-donor) we do not need to order and use posterior
+# probabilities per se
 
 table(knn.pred, c.valid)
 #          c.valid
