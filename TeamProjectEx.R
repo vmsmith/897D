@@ -24,6 +24,7 @@ charity.t <- charity
 charity.t$avhv <- log(charity.t$avhv)
 charity.t$incm <- log(charity.t$incm)
 charity.t$inca <- log(charity.t$inca)
+charity.t$plow <- (charity.t$plow) ^ 0.3
 charity.t$npro <- (charity.t$npro) ^ 0.6
 charity.t$tgif <- (charity.t$tgif) ^ -0.3
 charity.t$lgif <- log(charity.t$lgif)
