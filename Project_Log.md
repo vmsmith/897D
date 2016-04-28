@@ -1,3 +1,16 @@
+#### Sat, 30 Apr
+* Rick - Regions variable
+* Rick - Start fleshing out the report
+* Rick - Look at SVM
+* Rick - Over-weighting
+* Cheryl - Start SVM
+* Cheryl - Review K-nearest neighbors
+* Keith - plow variable 
+* Keith - Review k-nearest neighbors
+* Keith - Continue regression
+
+* Next meeting: 12:00 Saturday
+
 #### Tue, 26 Apr
 * 8:00 pm
   * Rick - Finish documenting code
