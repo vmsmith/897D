@@ -40,7 +40,7 @@
 
 #### References
 
-Kuhn, M. (2016). caret: Classification and Regression Training. R package version 6.0-68. 
+Kuhn, M. (2016). caret: Classification and Regression Training. R package version 6.0-68.   
 https://CRAN.R-project.org/package=caret
 
 #### Appendix A - Data
