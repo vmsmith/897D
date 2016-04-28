@@ -119,46 +119,60 @@ model.lda1 <- lda(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc
 
 
 # For each observation, the LDA predict function produces a list with three items: (1) a class, 
-# (2) the posterior probability of the class, and (3) _______. 
-# The posterior probability has two components: (1) _____, (2) the posterior probability.
+# (2) the posterior probability of the class, and (3) the LDA score (irrelevant for this problem).
+
+# The posterior probability has two components: (1) the posterior probability of not being in the class, 
+# (2) the posterior probability of being in the class.
+
 # This code gives us the posterior probability of each observation in the validation set belonging 
 # to the class it was predicted to be in
-post.valid.lda1 <- predict(model.lda1, data.valid.std.c)$posterior[ , 2] # n.valid.c post probs
 
+post.valid.lda1 <- predict(model.lda1, data.valid.std.c)$posterior[ , 2] # n.valid.c post probs
 
 #
 #     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
 #
-# This function begins by ordering the posterior probabilities in decreasingn order.
-# From each observation, it subtracts 2 (the cost of the mailing)
-# It multiplies that by c.valid, which is either a 0 or a 1
-# It multiplies that by 14.5, the average donation
-# It calculates the cumulative sum and saves each cumulative sum to profit.lda1
+# This function begins by ordering the posterior probabilities in decreasing order:
+#      order(post.valid.lda1, decreasing = T)
+# Using the output of step 1 as an index, it isolates actual donors in the validation set:
+#     c.valid[order(post.valid.lda1, decreasing = T)]
+# It multiplies each result by $14.50 (the average donation), then subtracts 2
+#     14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2 (the cost of mailing)
+# Finally, it calculates the cumulative sum and saves each cumulative sum to profit.lda1
+# Note 1: the order() function behaves slightly differently than the sort() function used in a few lines
+# Note 2: This is actually a series of $12.50 add-ons, until a certain point, and then it is 
+#         cumulative $2.00 subtractions.
+
 profit.lda1 <- cumsum(14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2)
+
 # Show how profits increase, peak, and then decline with more mailings
-plot(profit.lda1) # see how profits change as more mailings are made
+plot(profit.lda1) 
 # Identifies the maximum profit point
-n.mail.valid <- which.max(profit.lda1) # number of mailings that maximizes profits
+n.mail.valid <- which.max(profit.lda1)
 # Identifies the maximum profit point and associated profit
-c(n.mail.valid, max(profit.lda1)) # report number of mailings and maximum profit
+c(n.mail.valid, max(profit.lda1)) 
 # 1329.0 11624.5
 
 #
 #     Sets a cutoff point based on the maximum that was just calculated
 #
 # Sorts the posterior probabilities in decreasing order
-# Indexes the sorted list using the maximum that was calculated
-cutoff.lda1 <- sort(post.valid.lda1, decreasing = T)[n.mail.valid + 1] # set cutoff based on n.mail.valid
-# Subsets the posterior probabilities based on the index
-chat.valid.lda1 <- ifelse(post.valid.lda1 > cutoff.lda1, 1, 0) # mail to everyone above the cutoff
-# Computes confusion matrix
-table(chat.valid.lda1, c.valid) # classification table
+# Creates a cutoff point using the maximum that was calculated (n.mail.valid) + 1
+cutoff.lda1 <- sort(post.valid.lda1, decreasing = T)[n.mail.valid + 1] 
+
+# Subsets the posterior probabilities based on the cutoff point
+# Everyone above the cutoff is a candidate for mailing
+chat.valid.lda1 <- ifelse(post.valid.lda1 > cutoff.lda1, 1, 0) 
+
+# Creates classification matrix
+table(chat.valid.lda1, c.valid)
 #               c.valid
 #chat.valid.lda1   0   1
 #              0 675  14
 #              1 344 985
-# check n.mail.valid = 344+985 = 1329
-# check profit = 14.5*985-2*1329 = 11624.5
+# check n.mail.valid = 344 + 985 = 1329
+# check profit = 14.5 * 985 - 2 * 1329 = 11624.5
+
 
 ####################################################################################
 #
