@@ -26,6 +26,8 @@
 
 ###### Linear Discriminant Analysis
 
+[Venerables, 2002]
+
 ###### Logistic Regression
 
 ###### K-nearest Neighbors
@@ -50,6 +52,7 @@ https://CRAN.R-project.org/package=caret
 Liaw, A. and M. Wiener (2002). Classification and Regression by randomForest. R News 2(3), 18--22  
 
 Venables, W. N. & Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth Edition. Springer, New York. ISBN 0-387-95457-0  
+
 
 #### Appendix A - Data
 
