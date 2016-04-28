@@ -1,5 +1,5 @@
 #### Sat, 30 Apr
-* Rick - Regions variable
+* Rick - Look at regions variable
 * Rick - Start fleshing out the report
 * Rick - Look at SVM
 * Rick - Over-weighting
