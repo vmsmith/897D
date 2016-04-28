@@ -1,10 +1,11 @@
-charity <- read.csv("~/Documents/teaching/psu/charity.csv")
+charity <- read.csv("./charity.csv")
 
 ####################################################################################
 #
 #                     Predictor transformations
 #
 ####################################################################################
+
 # install.packages("caret", dependencies = c("Depends", "Suggests")
 # library(caret)
 # library(dplyr)
