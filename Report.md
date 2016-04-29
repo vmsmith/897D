@@ -8,7 +8,7 @@ The task is twofold:
 
 2. Develop a prediction model that predicts donation amounts from those people identified as donors.
 
-Team H evaluated five different classification techniques to capture likely donors: k-nearest neighbor, random forests, logistic regression, linear discriminant analysi, and support vector machines. 
+Team H evaluated five different classification techniques to capture likely donors: k-nearest neighbor, random forests, logistic regression, linear discriminant analysis, and support vector machines. 
 
 We evaluated __ different regression techniques to predict likely donation amounts: ordinary least squares regression, best subset regression, ridge regression, LASSO, and ________.
 
@@ -61,6 +61,20 @@ Appendix A describes the data.
 ###### Support Vector Machines
 
 #### Results
+
+##### Classification Methods  
+
+| Method        | Number of Letters | Predicted Profit|
+| ------------- | ----------------- |---------------- |
+| K-nearest Neighbor  | blah blah  |   blah blah      |
+| Random Forest  | blah blah  | blah blah             |
+| Logistic Regression | blah blah | blah blah |
+| Linear Discriminant Analysis | blah blah | blah blah |
+| Support Vector Machine | blah blah | blah blah |
+
+
+##### Regression Methods  
+
 
 #### Conclusion
 
