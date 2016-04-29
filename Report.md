@@ -198,6 +198,89 @@ charity.t$agif <- log(charity.t$agif)
 
 ##### Creating Test, Validation, and Training Sets
 
+#
+#     Create the training set
+#
+# Subset data on "part == train"
+data.train <- charity.t[charity$part == "train", ]
+# Create the training set design matrix, leaving out ID, donr, and damt
+x.train <- data.train[ , 2:21]
+# Create the response variable for the classification (donr)
+c.train <- data.train[ , 22] # donr
+# Determine number of elements in the classification response variable
+n.train.c <- length(c.train) # 3984
+# Create the response variable for the regression
+y.train <- data.train[c.train == 1, 23] # damt for observations with donr = 1
+# Determine the number of elements the regression response variable
+n.train.y <- length(y.train) # 1995
+
+#
+#     Create the validation set
+#
+# Subset data on "part == valid"
+data.valid <- charity.t[charity$part == "valid", ]
+# Create the validation set design matrix, leaving out ID, donr, and damt
+x.valid <- data.valid[ , 2:21]
+# Create the response variable for the classification (donr)
+c.valid <- data.valid[ , 22] # donr
+# Determine the number of elements in the classification response variable
+n.valid.c <- length(c.valid) # 2018
+# Create the response variable for the regression
+y.valid <- data.valid[c.valid == 1, 23] # damt for observations with donr=1
+# Determine the number of elements in the regression response variable
+n.valid.y <- length(y.valid) # 999
+
+#
+#     Create the test set
+#
+# Subset data on "part == test"
+data.test <- charity.t[charity$part == "test", ]
+# Determine the number of rows in the test data
+n.test <- dim(data.test)[1] # 2007
+# Create a test set design matrix, leaving out ID, donr, and damt
+x.test <- data.test[ , 2:21]
+
+#
+#     Standardize the training data
+#
+# Find the mean of each column in the training design matrix
+x.train.mean <- apply(x.train, 2, mean)
+# Find the standard deviation of each column in the training design matrix
+x.train.sd <- apply(x.train, 2, sd)
+# Standardize each column in the training design matrix
+x.train.std <- t((t(x.train)-x.train.mean)/x.train.sd) # standardize to have zero mean and unit sd
+# Check that each column in the training design matrix has zero mean
+apply(x.train.std, 2, mean) # check zero mean
+# Check that each column in the training design matrix has a standard deviation of 1
+apply(x.train.std, 2, sd) # check unit sd
+
+#
+#     Create data frames from standardized training data for donr and damt
+#
+# Create a training donr data frame with standardized data and the donr vector
+data.train.std.c <- data.frame(x.train.std, donr=c.train) # to classify donr
+# Create a training damt data frame with standardized data and the damt vector
+data.train.std.y <- data.frame(x.train.std[c.train==1,], damt=y.train) # to predict damt when donr=1
+
+#
+#    Standardize the validation data
+#
+# Standardize the validation set using the training mean and training sd;
+# Create a matrix and transpose it
+x.valid.std <- t((t(x.valid)-x.train.mean)/x.train.sd) # standardize using training mean and sd
+# Create validation donr data frame with standardized validation data
+data.valid.std.c <- data.frame(x.valid.std, donr=c.valid) # to classify donr
+# Create a validation damt data frame with standardized validation data
+data.valid.std.y <- data.frame(x.valid.std[c.valid==1,], damt=y.valid) # to predict damt when donr=1
+
+#
+#     Standardize the test data
+#
+# Standardize the test set using the training mean and training sd;
+# Create a matrix and transpose it
+x.test.std <- t((t(x.test)-x.train.mean)/x.train.sd) # standardize using training mean and sd
+# Create a data frame from the transposed matrix
+data.test.std <- data.frame(x.test.std)
 
 ##### Variable Scaling
 
