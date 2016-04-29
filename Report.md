@@ -169,6 +169,7 @@ This showed that the only two columns with missing data were `donr` and `damt`, 
 
 ##### EDA and Variable Transformation
 
+`
 # install.packages("caret", dependencies = c("Depends", "Suggests")
 # library(caret)
 # library(dplyr)
@@ -181,7 +182,9 @@ charity.bc.obj <- preProcess(charity.bc, method = "BoxCox")
 
 # Print transformations
 charity.bc.obj$bc
+`
 
+`
 # Transform variables in accordance with Box Cox output
 charity.t <- charity
 charity.t$avhv <- log(charity.t$avhv)
@@ -195,9 +198,11 @@ charity.t$rgif <- log(charity.t$rgif)
 charity.t$tdon <- log(charity.t$tdon)
 charity.t$tlag <- (charity.t$tlag) ^ -0.4
 charity.t$agif <- log(charity.t$agif)
+`
 
 ##### Creating Test, Validation, and Training Sets
 
+`
 #
 #     Create the training set
 #
@@ -281,6 +286,7 @@ data.valid.std.y <- data.frame(x.valid.std[c.valid==1,], damt=y.valid) # to pred
 x.test.std <- t((t(x.test)-x.train.mean)/x.train.sd) # standardize using training mean and sd
 # Create a data frame from the transposed matrix
 data.test.std <- data.frame(x.test.std)
+`
 
 ##### Variable Scaling
 
