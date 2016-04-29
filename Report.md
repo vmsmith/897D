@@ -20,9 +20,9 @@ Appendix C contains an in-depth discussion of the various analytic evalution tec
 
 Appendix D contains a complete system description (i.e., hardware, operating system, R version, and R packages) with which the analysis was done.
 
-Appendix A describes the data.
+Appendix A describes the data.  
  
- #### Analysis
+#### Analysis
 
 ##### Pre-processing
 
