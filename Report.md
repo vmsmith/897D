@@ -75,6 +75,13 @@ Appendix A describes the data.
 
 ##### Regression Methods  
 
+| Method        | Number of Letters | Predicted Profit|
+| ------------- | ----------------- |---------------- |
+| Ordinary Least Squares  | blah blah  |   blah blah      |
+| Best Subset  | blah blah  | blah blah             |
+| Ridge Regression | blah blah | blah blah |
+| LASSO | blah blah | blah blah |
+| Something non-linear | blah blah | blah blah |  
 
 #### Conclusion
 
