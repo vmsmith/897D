@@ -1,4 +1,7 @@
 charity <- read.csv("./charity.csv")
+dim(charity)
+str(charity)
+colnames(charity)[colSums(is.na(charity)) > 0]
 
 ####################################################################################
 #
