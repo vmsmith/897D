@@ -329,6 +329,232 @@ table(knn.pred, c.valid)
 # check n.mail.valid = 342 + 951 = 1291
 # check profit = 14.5*951-2*1293 = 11203.5
 
+####################################################################################
+#
+#     Classification Modeling - Support Vector Machines - Preparation
+#
+####################################################################################
+
+library(e1071)
+
+# Change donr to a class to avoid getting negative probabilities
+data.train.std.c$donr[data.train.std.c$donr == 1] <- "D"
+data.train.std.c$donr[data.train.std.c$donr == 0] <- "N"
+
+data.valid.std.c$donr[data.valid.std.c$donr == 1] <- "D"
+data.valid.std.c$donr[data.valid.std.c$donr == 0] <- "N"
+
+####################################################################################
+#
+#       Classification Modeling - Support Vector Machines - Linear Kernel
+#
+####################################################################################
+
+# Fit a model using all variables and the standardized training data
+svmtrain1 <- svm(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc^2) + genf + wrat + 
+                   avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
+                 data.train.std.c, kernel = "linear", cost = 0.01, type = "C", probability = TRUE)
+
+
+# Tune to find optimum cost and gamma parameters
+#
+#     Note: This does not work yet
+#
+set.seed(1)
+tune.out1 <- tune(svm, donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc^2) + genf + wrat + 
+                  avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
+                  data.train.std.c, kernel = "linear", type = "C", probability = TRUE, 
+                  ranges = list(cost = 10^seq(-2, 1, by = 0.1)))
+summary(tune.out1)
+tune.out1$best.parameters
+
+
+
+# For each observation, the SVM predict function produces posterior probabilities that can be
+# accessed through the attr() function. The second column of attr(post.valid.svm1, "probabilities")
+# contains the posterior probability of an observation belonging to the donor class
+
+post.valid.svm1 <- predict(svmtrain1, newdata = data.valid.std.c, type = "prob", probability = TRUE) 
+
+# Capture the posterior probabilities
+post.valid.svm1 <- attr(post.valid.svm1, "probabilities")[ , 2]
+
+#
+#     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
+#
+# This function begins by ordering the posterior probabilities in decreasing order:
+#      order(post.valid.lda1, decreasing = T)
+# Using the output of step 1 as an index, it isolates actual donors in the validation set:
+#     c.valid[order(post.valid.lda1, decreasing = T)]
+# It multiplies each result by $14.50 (the average donation), then subtracts 2
+#     14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2 (the cost of mailing)
+# Finally, it calculates the cumulative sum and saves each cumulative sum to profit.lda1
+# Note 1: the order() function behaves slightly differently than the sort() function used in a few lines
+# Note 2: This is actually a series of $12.50 add-ons, until a certain point, and then it is 
+#         cumulative $2.00 subtractions.
+
+profit.svm1 <- cumsum(14.5 * c.valid[order(post.valid.svm1, decreasing = T)] - 2)
+
+# Show how profits increase, peak, and then decline with more mailings
+plot(profit.svm1) 
+# Identifies the maximum profit point
+n.mail.valid <- which.max(profit.svm1)
+# Identifies the maximum profit point and associated profit
+c(n.mail.valid, max(profit.svm1)) 
+# 1389.0 11635
+
+#
+#     Sets a cutoff point based on the maximum that was just calculated
+#
+# Sorts the posterior probabilities in decreasing order
+# Creates a cutoff point using the maximum that was calculated (n.mail.valid) + 1
+cutoff.svm1 <- sort(post.valid.svm1, decreasing = T)[n.mail.valid + 1] 
+
+# Subsets the posterior probabilities based on the cutoff point
+# Everyone above the cutoff is a candidate for mailing
+chat.valid.svm1 <- ifelse(post.valid.svm1 > cutoff.svm1, 1, 0) 
+
+# Creates classification matrix
+table(chat.valid.svm1, c.valid)
+#               c.valid
+#chat.valid.svm1   0   1
+#              0 624   5
+#              1 395 994
+# check n.mail.valid = 395 + 994 = 1389
+# check profit = 14.5 * 985 - 2 * 1329 = 11624.5
+
+####################################################################################
+#
+#       Classification Modeling - Support Vector Machines - Radial Kernel
+#
+####################################################################################
+
+library(e1071)
+
+# Fit a model using all variables and the standardized training data
+svmtrain2 <- svm(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc^2) + genf + wrat + 
+                   avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
+                 data.train.std.c, kernel = "radial", cost = 0.01, type = "C", probability = TRUE)
+
+
+# For each observation, the SVM predict function produces posterior probabilities that can be
+# accessed through the attr() function. The second column of attr(post.valid.svm1, "probabilities")
+# contains the posterior probability of an observation belonging to the donor class
+
+post.valid.svm2 <- predict(svmtrain2, newdata = data.valid.std.c, type = "prob", probability = TRUE) 
+
+# Capture the posterior probabilities
+post.valid.svm2 <- attr(post.valid.svm2, "probabilities")[ , 2]
+
+#
+#     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
+#
+# This function begins by ordering the posterior probabilities in decreasing order:
+#      order(post.valid.lda1, decreasing = T)
+# Using the output of step 1 as an index, it isolates actual donors in the validation set:
+#     c.valid[order(post.valid.lda1, decreasing = T)]
+# It multiplies each result by $14.50 (the average donation), then subtracts 2
+#     14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2 (the cost of mailing)
+# Finally, it calculates the cumulative sum and saves each cumulative sum to profit.lda1
+# Note 1: the order() function behaves slightly differently than the sort() function used in a few lines
+# Note 2: This is actually a series of $12.50 add-ons, until a certain point, and then it is 
+#         cumulative $2.00 subtractions.
+
+profit.svm2 <- cumsum(14.5 * c.valid[order(post.valid.svm2, decreasing = T)] - 2)
+
+# Show how profits increase, peak, and then decline with more mailings
+plot(profit.svm2) 
+# Identifies the maximum profit point
+n.mail.valid <- which.max(profit.svm2)
+# Identifies the maximum profit point and associated profit
+c(n.mail.valid, max(profit.svm2)) 
+# 1382.0 11489.5
+
+#
+#     Sets a cutoff point based on the maximum that was just calculated
+#
+# Sorts the posterior probabilities in decreasing order
+# Creates a cutoff point using the maximum that was calculated (n.mail.valid) + 1
+cutoff.svm2 <- sort(post.valid.svm2, decreasing = T)[n.mail.valid + 1] 
+
+# Subsets the posterior probabilities based on the cutoff point
+# Everyone above the cutoff is a candidate for mailing
+chat.valid.svm2 <- ifelse(post.valid.svm2 > cutoff.svm2, 1, 0) 
+
+# Creates classification matrix
+table(chat.valid.svm2, c.valid)
+#               c.valid
+#chat.valid.svm1   0   1
+#              0 620  16
+#              1 399 983
+# check n.mail.valid = 399 + 983 = 1382
+# check profit = 14.5 * 985 - 2 * 1329 = 11624.5
+
+####################################################################################
+#
+#       Classification Modeling - Support Vector Machines - Polynomial Kernel
+#
+####################################################################################
+
+# Fit a model using all variables and the standardized training data
+svmtrain3 <- svm(donr ~ reg1 + reg2 + reg3 + reg4 + home + chld + hinc + I(hinc^2) + genf + wrat + 
+                 avhv + incm + inca + plow + npro + tgif + lgif + rgif + tdon + tlag + agif, 
+                 data.train.std.c, kernel = "polynomial", degree = 2, cost = 0.01, type = "C", 
+                 probability = TRUE)
+
+
+# For each observation, the SVM predict function produces posterior probabilities that can be
+# accessed through the attr() function. The second column of attr(post.valid.svm1, "probabilities")
+# contains the posterior probability of an observation belonging to the donor class
+
+post.valid.svm3 <- predict(svmtrain3, newdata = data.valid.std.c, type = "prob", probability = TRUE) 
+
+# Capture the posterior probabilities
+post.valid.svm3 <- attr(post.valid.svm3, "probabilities")[ , 2]
+
+#
+#     Calculate ordered profit function using average donation = $14.50 and mailing cost = $2
+#
+# This function begins by ordering the posterior probabilities in decreasing order:
+#      order(post.valid.lda1, decreasing = T)
+# Using the output of step 1 as an index, it isolates actual donors in the validation set:
+#     c.valid[order(post.valid.lda1, decreasing = T)]
+# It multiplies each result by $14.50 (the average donation), then subtracts 2
+#     14.5 * c.valid[order(post.valid.lda1, decreasing = T)] - 2 (the cost of mailing)
+# Finally, it calculates the cumulative sum and saves each cumulative sum to profit.lda1
+# Note 1: the order() function behaves slightly differently than the sort() function used in a few lines
+# Note 2: This is actually a series of $12.50 add-ons, until a certain point, and then it is 
+#         cumulative $2.00 subtractions.
+
+profit.svm3 <- cumsum(14.5 * c.valid[order(post.valid.svm3, decreasing = T)] - 2)
+
+# Show how profits increase, peak, and then decline with more mailings
+plot(profit.svm3) 
+# Identifies the maximum profit point
+n.mail.valid <- which.max(profit.svm3)
+# Identifies the maximum profit point and associated profit
+c(n.mail.valid, max(profit.svm3)) 
+# 1689.0 10846.5
+
+#
+#     Sets a cutoff point based on the maximum that was just calculated
+#
+# Sorts the posterior probabilities in decreasing order
+# Creates a cutoff point using the maximum that was calculated (n.mail.valid) + 1
+cutoff.svm3 <- sort(post.valid.svm3, decreasing = T)[n.mail.valid + 1] 
+
+# Subsets the posterior probabilities based on the cutoff point
+# Everyone above the cutoff is a candidate for mailing
+chat.valid.svm3 <- ifelse(post.valid.svm3 > cutoff.svm3, 1, 0) 
+
+# Creates classification matrix
+table(chat.valid.svm3, c.valid)
+#               c.valid
+#chat.valid.svm1   0   1
+#              0 325  23
+#              1 694 976
+# check n.mail.valid = 694 + 976 = 1670
+# check profit = 14.5 * 985 - 2 * 1329 = 11624.5
 
 
 ###################################################################################
