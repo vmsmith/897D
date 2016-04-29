@@ -75,7 +75,7 @@ Appendix A describes the data.
 
 ##### Regression Methods  
 
-| Method        | Number of Letters | Predicted Profit|
+| Method        | Mean Prediction Error | Standard Error|
 | ------------- | ----------------- |---------------- |
 | Ordinary Least Squares  | blah blah  |   blah blah      |
 | Best Subset  | blah blah  | blah blah             |
