@@ -161,6 +161,11 @@ The pre-processing of the data consisted of the following steps:
 
 ##### Missing Data
 
+The following code was used to examine the data for missing data:
+
+`colnames(charity)[colSums(is.na(charity)) > 0]`
+
+This showed that the only two columns with missing data were `donr` and `damt`, both of which were response variables and would be dealt with in the actual analysis process.
 
 ##### EDA and Variable Transformation
 
