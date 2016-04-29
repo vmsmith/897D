@@ -19,14 +19,37 @@ Appendix B contains a description of the pre-processing of the data, as well as 
 Appendix C contains an in-depth discussion of the various analytic evalution techniques used, as well as the R code used.
 
 Appendix D contains a complete system description (i.e., hardware, operating system, R version, and R packages) with which the analysis was done.
-
-Appendix A describes the data.  
  
 #### Analysis
 
 ##### Pre-processing
 
+The significant operation performed during pre-processing was 
+
 [Kuhn, 2016]
+
+##### Classification 
+
+###### Feature Selection
+
+##### K-nearest Neighbors (KNN)
+
+For KNN [Venerables, 2002], we used leave-one-out cross validation method to find the optimal K for our model. We first tested k values from 1 to 300 in the interval of 10 using the training data and found that the minimum error rate occurred at k=11 (error rate increases from K=11 to k=51, then decreases about halfway from k=51 to k=100, and stabilizes throughout k=300). From there, we then tested k=1 through k=30 and found that the minimal error rate occurred at k=13 – as shown in Figure 4. Using K=13 for our KNN model, our validation error rate turned out to be 5.15%
+
+###### Decision Trees
+
+Our decision tree choice was a Random Forest [Liaw, 2002]. 
+
+###### Logistic Regression
+
+
+###### Linear Discriminant Analysis
+
+[Venerables, 2002]
+
+###### Support Vector Machines (SVM)
+
+The SVM function used for prediction was from the e1071 package [Meyer et al, 2015].
 
 ##### Regression
 
@@ -40,25 +63,7 @@ Appendix A describes the data.
 
 ###### Non-Linear Methods
 
-##### Classification 
 
-###### Feature Selection
-
-###### Linear Discriminant Analysis
-
-[Venerables, 2002]
-
-###### Logistic Regression
-
-###### K-nearest Neighbors
-
-[Venerables, 2002]
-
-###### Decision Trees
-
-[Liaw, 2002]
-
-###### Support Vector Machines
 
 #### Results
 
@@ -91,6 +96,10 @@ Kuhn, M. (2016). caret: Classification and Regression Training. R package versio
 https://CRAN.R-project.org/package=caret  
 
 Liaw, A. and M. Wiener (2002). Classification and Regression by randomForest. R News 2(3), 18--22  
+
+Meyer, D. and Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel and Friedrich Leisch (2015). e1071:
+Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), TU Wien. R package version 1.6-7. https://CRAN.R-project.org/package=e1071
+
 
 Venables, W. N. & Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth Edition. Springer, New York. ISBN 0-387-95457-0  
 
