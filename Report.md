@@ -151,6 +151,28 @@ A first examination of the structure of the data using the R `str()` command sho
 
 #### Appendix B - R Code for Pre-Processing
 
+The pre-processing of the data consisted of the following steps:
+
+1. Examining for missing data
+2. Exploratory data analysis and variable transformation
+3. Creating training, validation, and test sets
+4. Variable scaling
+5. Feature selection
+
+##### Missing Data
+
+
+##### EDA and Variable Transformation
+
+
+##### Creating Test, Validation, and Training Sets
+
+
+##### Variable Scaling
+
+
+##### Feature Selection
+
 #### Appendix C - R Code for Analysis
 
 #### Appendix D - System
