@@ -122,6 +122,7 @@ The data set, `charity.csv`, contained 8009 records, each with the following 24 
 
 A first examination of the structure of the data using the R `str()` command showed the following:
 
+```
 > str(charity)  
 'data.frame':	8009 obs. of  24 variables:  
  $ ID  : int  1 2 3 4 5 6 7 8 9 10 ...  
@@ -148,6 +149,7 @@ A first examination of the structure of the data using the R `str()` command sho
  $ donr: int  0 1 NA NA 1 1 0 0 NA 0 ...  
  $ damt: int  0 15 NA NA 17 12 0 0 NA 0 ...  
  $ part: Factor w/ 3 levels "test","train",..: 2 2 1 1 3 2 3 3 1 2 ...  
+```  
 
 #### Appendix B - R Code for Pre-Processing
 
@@ -163,13 +165,13 @@ The pre-processing of the data consisted of the following steps:
 
 The following code was used to examine the data for missing data:
 
-`colnames(charity)[colSums(is.na(charity)) > 0]`
+```colnames(charity)[colSums(is.na(charity)) > 0]```
 
 This showed that the only two columns with missing data were `donr` and `damt`, both of which were response variables and would be dealt with in the actual analysis process.
 
 ##### EDA and Variable Transformation
 
-`
+```
 # install.packages("caret", dependencies = c("Depends", "Suggests")
 # library(caret)
 # library(dplyr)
@@ -182,9 +184,9 @@ charity.bc.obj <- preProcess(charity.bc, method = "BoxCox")
 
 # Print transformations
 charity.bc.obj$bc
-`
+```
 
-`
+```
 # Transform variables in accordance with Box Cox output
 charity.t <- charity
 charity.t$avhv <- log(charity.t$avhv)
@@ -198,11 +200,11 @@ charity.t$rgif <- log(charity.t$rgif)
 charity.t$tdon <- log(charity.t$tdon)
 charity.t$tlag <- (charity.t$tlag) ^ -0.4
 charity.t$agif <- log(charity.t$agif)
-`
+```
 
 ##### Creating Test, Validation, and Training Sets
 
-`
+```
 #
 #     Create the training set
 #
@@ -244,7 +246,11 @@ data.test <- charity.t[charity$part == "test", ]
 n.test <- dim(data.test)[1] # 2007
 # Create a test set design matrix, leaving out ID, donr, and damt
 x.test <- data.test[ , 2:21]
+```
 
+##### Variable Scaling
+
+```
 #
 #     Standardize the training data
 #
@@ -286,10 +292,7 @@ data.valid.std.y <- data.frame(x.valid.std[c.valid==1,], damt=y.valid) # to pred
 x.test.std <- t((t(x.test)-x.train.mean)/x.train.sd) # standardize using training mean and sd
 # Create a data frame from the transposed matrix
 data.test.std <- data.frame(x.test.std)
-`
-
-##### Variable Scaling
-
+```
 
 ##### Feature Selection
 
