@@ -299,3 +299,22 @@ data.test.std <- data.frame(x.test.std)
 #### Appendix C - R Code for Analysis
 
 #### Appendix D - System
+
+```
+> sessionInfo()
+R version 3.2.4 (2016-03-10)
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+Running under: OS X 10.9.5 (Mavericks)
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] e1071_1.6-7 MASS_7.3-45
+
+loaded via a namespace (and not attached):
+[1] class_7.3-14 tools_3.2.4 
+```
