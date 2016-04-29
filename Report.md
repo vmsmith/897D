@@ -1,11 +1,28 @@
 #### Introduction
 
-The landscape of protein-protein interaction (PPI) is essential for developing cancer therapeutic approaches. However, it is not easy to directly measure PPI by quantifying protein levels and their activities in cells; hence, to be able to predict/infer PPI based on gene expression measurements, much easier to obtain, would be highly beneficial to the cancer community. The goal of project is to identify interacted genes by using gene expression data. The dataset contains 8,759 data points (where each data point represents a pair of genes). Each data point contains five predictors – the mean of each gene (X1, X2), the covariance of the two genes (X3), and the variance of each gene (X4, X5); and one binary response - 1 for interaction indication and 0 for no interaction (Y).
+A charitable organization wishes to develop a data-mining model to improve the cost-effectiveness of their direct marketing campaigns to previous donors. According to their recent mailing records, the typical overall response rate is 10%. Out of those who respond (donate), the average donation is $14.50. Each mailing, which includes a gift of personalized address labels and assortments of cards and envelopes, costs $2 to produce and send. Since expected profit from each mailing is 14.5 x 0.1 – 2 = –$0.55, it is not cost effective to mail everyone. 
 
+The task is twofold:
 
-The project conducted five classification techniques – logistic regression, linear discriminant analysis (LDA), quadratic discriminant analysis (QDA), K-Nearest Neighbor (KNN), and Logistic Regression Generalized Additive Model (GAM). The dataset is split into 7,381 points for training and 1,378 for validation. Per instruction, we used set.seed(2014) for random number generator to allow reproducibility. We trained the model using the training set exclusively and tested the result on the validation set. Finally, we looked at various performance metrics in order to assess each model’s accuracy.
+1. Develop a classification model that can effectively capture likely donors so that the expected net profit is maximized. 
 
-#### Analysis
+2. Develop a prediction model that predicts donation amounts from those people identified as donors.
+
+Team H evaluated five different classification techniques to capture likely donors: k-nearest neighbor, random forests, logistic regression, linear discriminant analysi, and support vector machines. 
+
+We evaluated __ different regression techniques to predict likely donation amounts: ordinary least squares regression, best subset regression, ridge regression, LASSO, and ________.
+
+Appendix A contains a complete description of the data.
+
+Appendix B contains a description of the pre-processing of the data, as well as the R code used.
+
+Appendix C contains an in-depth discussion of the various analytic evalution techniques used, as well as the R code used.
+
+Appendix D contains a complete system description (i.e., hardware, operating system, R version, and R packages) with which the analysis was done.
+
+Appendix A describes the data.
+ 
+ #### Analysis
 
 ##### Pre-processing
 
