@@ -96,7 +96,8 @@ The SVM function used for prediction was from the e1071 package [Meyer et al, 20
 | Best Subset  | blah blah  | blah blah | blah blah  | blah blah |
 | Ridge Regression | blah blah | blah blah | blah blah | blah blah |
 | LASSO | blah blah | blah blah | blah blah | blah blah |
-| Something non-linear | blah blah | blah blah | blah blah | blah blah |  
+| Partial Least Squares | blah blah | blah blah | blah blah | blah blah |  
+| Boosting | blah blah | blah blah | blah blah | blah blah |
 
 #### Conclusion
 
