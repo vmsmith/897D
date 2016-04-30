@@ -38,10 +38,9 @@ The following five classification techniques were evaluated: k-nearest neighbor,
 
 ###### Feature Selection
 
-10 features were selected for the classification models. This was based on a combination of _____ and ______. The features that were selected were the following:
+Feature selection was accomplished using a combination of the base R `cor()` function along with the `caret` package `trainControl()`, `rfeControl()`, and `varImport()` functions. From this analysis, the following 10 features were selected for the classification models: chld, reg2, wrat, incm, tgif, home, plow, npro, inca, tlag. 
 
-The specific code used to determine these features is found on pages _____ and ____ in Appendix C.
-
+The specific code, along with the associated discussion, used to determine these features is found on pages _____ and ____ in Appendix C.
 
 ###### K-nearest Neighbors (KNN)
 
