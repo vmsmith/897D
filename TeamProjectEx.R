@@ -564,23 +564,27 @@ table(chat.valid.svm3, c.valid)
 ###################################################################################
 
 # Make a prediction using the fitted glm model and the standardized test data
-# This produces a vector of probabilities
-post.test <- predict(model.log1, data.test.std, type="response") # post probs for test data
+# This produces a vector of posterior probabilities
+post.test <- predict(model.log1, data.test.std, type="response") 
 
 #
 # Make the oversampling adjustment for calculating number of mailings for test set
 #
-# 
+# In the original data set, only 10% of the responders were donors. This was artificially changed to 50%
+# through oversampling methods. This section accounts for that.
+#
 # Identifies the maximum profit point (should be the same as in logistic regression)
 n.mail.valid <- which.max(profit.log1)
-# Typical response rate
-tr.rate <- .1 # typical response rate is .1
-# Actual validation response rate
-vr.rate <- .5 # whereas validation response rate is .5
+
+# Typical real world response rate is 0.1
+tr.rate <- .1 
+# Validation response rate is 0.5 via oversampling
+vr.rate <- .5 
 # Adjust for mail = yes
-adj.test.1 <- (n.mail.valid/n.valid.c)/(vr.rate/tr.rate) # adjustment for mail yes
+adj.test.1 <- (n.mail.valid/n.valid.c)/(vr.rate/tr.rate) 
 # Adjust for mail = no
-adj.test.0 <- ((n.valid.c-n.mail.valid)/n.valid.c)/((1-vr.rate)/(1-tr.rate)) # adjustment for mail no
+adj.test.0 <- ((n.valid.c-n.mail.valid)/n.valid.c)/((1-vr.rate)/(1-tr.rate)) 
+
 # Create a scaled proportion
 adj.test <- adj.test.1/(adj.test.1 + adj.test.0) # scale into a proportion
 # Calculate the number of mailings in test set
