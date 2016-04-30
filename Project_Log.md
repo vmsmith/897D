@@ -1,6 +1,8 @@
 #### Sat, 30 Apr
 * 1 and 0 to "D" and "N" at the beginning of classification?
 * SVM tuning
+* Cross-validation
+* ROC plots
 
 #### Thu, 28 Apr
 * Rick - Look at regions variable
