@@ -52,11 +52,11 @@ The following five classification techniques were evaluated: k-nearest neighbor,
 
 ###### Feature Selection
 
-Feature selection was accomplished using a combination of the base R `cor()` (Correlation) function along with the `caret` package `trainControl()`, `rfeControl()` (Recursive Feature Elimination), and `varImport()` (Variable Importance) functions. From this analysis, the following 10 features were selected for the classification models: chld, reg2, wrat, incm, tgif, home, plow, npro, inca, tlag. 
+Feature selection was accomplished using a combination of the base R `cor()` (Correlation) function along with the `caret` package `trainControl()`, `rfeControl()` (Recursive Feature Elimination), and `varImport()` (Variable Importance) functions. From this analysis, the following 10 features were selected for the classification models: chld, incm, tgif, plow, npro, inca, tlag, avhv, reg4, tdon.
 
-Additionally, an online review of the literature associated with predicting donors indicated that a standard industry model is "Recency, Frequency, Money". In other words, (1) how recently have people donated, (2) how fequently have they donated, and (3) how much money have they donated?
+An online review of the literature associated with predicting donors indicated that a standard industry model is "Recency, Frequency, Money". In other words, (1) how recently have people donated, (2) how fequently have they donated, and (3) how much money have they donated?
 
-Only two of the variable selected by the above process -- tgif and tlag -- fit into the industy model. We added tdon in an attempt to accomodate the industry model.
+Three of the variables selected by the above process -- tgif, tlag, and tdon -- fit into the industy model.
 
 The specific code, along with the associated discussion, used to determine these features is found on pages _____ and ____ in Appendix C.
 
