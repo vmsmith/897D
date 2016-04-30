@@ -92,8 +92,7 @@ The SVM function used for prediction was from the e1071 package [Meyer et al, 20
 
 | Method        | Predicted Donations | Mean Prediction Error | Standard Error| Number of Features |
 | ------------- | ----------------- |------------------------ | --------------| ------------------ |
-| Ordinary Least Squares  | blah blah | blah blah  |   blah blah | blah blah |
-| Best Subset  | blah blah  | blah blah | blah blah  | blah blah |
+| OLS Best Subset  | blah blah | blah blah  |   blah blah | blah blah |
 | Ridge Regression | blah blah | blah blah | blah blah | blah blah |
 | LASSO | blah blah | blah blah | blah blah | blah blah |
 | Partial Least Squares | blah blah | blah blah | blah blah | blah blah |  
