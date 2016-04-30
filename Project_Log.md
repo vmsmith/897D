@@ -1,9 +1,12 @@
 #### Sat, 30 Apr
-* Lower profit with KNN using reduced variable set
-* 1 and 0 to "D" and "N" at the beginning of classification?
-* SVM tuning
-* Cross-validation
-* ROC plots
+* To Do
+  * Rick: Architect the classification section to incororate feature selection
+* Topics
+  * Lower profit with KNN using reduced variable set
+  * 1 and 0 to "D" and "N" at the beginning of classification?
+  * SVM tuning
+  * Cross-validation
+  * ROC plots
 
 #### Thu, 28 Apr
 * Rick - Look at regions variable
