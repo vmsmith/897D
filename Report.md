@@ -28,6 +28,20 @@ Appendix D contains a complete system description (i.e., hardware, operating sys
 
 A detailed discussion of pre-processing is contained in Appendix B. Of note, the `preProcessing()` function from the `caret` package [Kuhn, 2016] was used to perform Box-Cox analyses and develop transformation parameters for a number of variables. 
 
+| Original Variable | Transformed Variable |
+| ----------------- | -------------------- |
+| avhv              | log(avhv)            |
+|incm               | log(incm)            |
+| inca              | log(inca) |
+| plow | (plow)^0.3 |
+| npro | (npro)^0.6 |
+| tgif | (tgif)^-0.3 |
+| lgif | log(lgif) |
+| rgif | log(rgif) |
+| tdon | log(tdon) |
+| tlag | ($tlag)^-0.4 |
+| agif | log(agif) |
+
 The data set was divided into three subsets: (1) a test subset with 3984 observations, (2) a validation subset with 2018 observations, and (3) a test subset with 2007 observations.
 
 Following the subsetting, scaling was done on all variables using the R `scale()` function to achieve mean of 0 and standard deviation of 1.
