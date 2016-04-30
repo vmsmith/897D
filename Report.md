@@ -38,7 +38,12 @@ The following five classification techniques were evaluated: k-nearest neighbor,
 
 ###### Feature Selection
 
-##### K-nearest Neighbors (KNN)
+10 features were selected for the classification models. This was based on a combination of _____ and ______. The features that were selected were the following:
+
+The specific code used to determine these features is found on pages _____ and ____ in Appendix C.
+
+
+###### K-nearest Neighbors (KNN)
 
 For KNN [Venerables, 2002], we used leave-one-out cross validation method to find the optimal K for our model. We first tested k values from 1 to 300 in the interval of 10 using the training data and found that the minimum error rate occurred at k=11 (error rate increases from K=11 to k=51, then decreases about halfway from k=51 to k=100, and stabilizes throughout k=300). From there, we then tested k=1 through k=30 and found that the minimal error rate occurred at k=13 – as shown in Figure 4. Using K=13 for our KNN model, our validation error rate turned out to be 5.15%
 
