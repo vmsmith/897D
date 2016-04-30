@@ -8,6 +8,8 @@ The task is twofold:
 
 2. Develop a prediction model that predicts donation amounts from those people identified as donors.
 
+The entire dataset consists of 8009 observations. These were subsetted into 3984 training observations, 2018 validation observations, and 2007 test observations. Weighted sampling was used to over-represent the responders so that the training and validation samples had approximately equal numbers of donors and non-donors. The response rate in the test sample has the more typical 10% response rate. 
+
 Team H evaluated five different classification techniques to capture likely donors: k-nearest neighbor, random forests, logistic regression, linear discriminant analysis, and support vector machines. 
 
 We evaluated __ different regression techniques to predict likely donation amounts: ordinary least squares regression, best subset regression, ridge regression, LASSO, and ________.
@@ -84,13 +86,13 @@ The SVM function used for prediction was from the e1071 package [Meyer et al, 20
 
 ##### Regression Methods  
 
-| Method        | Mean Prediction Error | Standard Error|
+| Method        | Predicted Donations | Mean Prediction Error | Standard Error|
 | ------------- | ----------------- |---------------- |
-| Ordinary Least Squares  | blah blah  |   blah blah      |
-| Best Subset  | blah blah  | blah blah             |
-| Ridge Regression | blah blah | blah blah |
-| LASSO | blah blah | blah blah |
-| Something non-linear | blah blah | blah blah |  
+| Ordinary Least Squares  | blah blah | blah blah  |   blah blah |
+| Best Subset  | blah blah  | blah blah | blah blah  |
+| Ridge Regression | blah blah | blah blah | blah blah |
+| LASSO | blah blah | blah blah | blah blah |
+| Something non-linear | blah blah | blah blah | blah blah |  
 
 #### Conclusion
 
