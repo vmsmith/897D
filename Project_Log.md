@@ -1,4 +1,8 @@
 #### Sat, 30 Apr
+* 1 and 0 to "D" and "N" at the beginning of classification?
+* SVM tuning
+
+#### Thu, 28 Apr
 * Rick - Look at regions variable
 * Rick - Start fleshing out the report
 * Rick - Look at SVM
