@@ -87,7 +87,7 @@ The SVM function used for prediction was from the e1071 package [Meyer et al, 20
 ##### Regression Methods  
 
 | Method        | Predicted Donations | Mean Prediction Error | Standard Error|
-| ------------- | ----------------- |---------------- |
+| ------------- | ----------------- |------------------------ | --------------|
 | Ordinary Least Squares  | blah blah | blah blah  |   blah blah |
 | Best Subset  | blah blah  | blah blah | blah blah  |
 | Ridge Regression | blah blah | blah blah | blah blah |
