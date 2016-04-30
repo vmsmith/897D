@@ -54,6 +54,10 @@ The following five classification techniques were evaluated: k-nearest neighbor,
 
 Feature selection was accomplished using a combination of the base R `cor()` function along with the `caret` package `trainControl()`, `rfeControl()`, and `varImport()` functions. From this analysis, the following 10 features were selected for the classification models: chld, reg2, wrat, incm, tgif, home, plow, npro, inca, tlag. 
 
+Additionally, an online review of the literature associated with predicting donors indicated that a standard industry model is "Recency, Frequency, Money". In other words, (1) how recently have people donated, (2) how fequently have they donated, and (3) how much money have they donated?
+
+Only one of the variable selected by the above process -- tgif -- fit into the industy model. We added tdon and tlag in an attempt to accomodate the industry model.
+
 The specific code, along with the associated discussion, used to determine these features is found on pages _____ and ____ in Appendix C.
 
 ###### K-nearest Neighbors (KNN)
