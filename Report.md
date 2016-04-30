@@ -96,6 +96,10 @@ The SVM function used for prediction was from the e1071 package [Meyer et al, 20
 
 #### Conclusion
 
+The ____ classification model did the best job of capturing likely donors, and therefore maximizing profit from the mailings. This model suggests that _____ letters will produce a profit of _____.
+
+The ____ regression model did the best job of predicting the amount of donations based on donors. This model suggests that donations in the amount of ______ can be expected, with a prediction error of _______ and a standard error of ________.
+
 #### References
 
 Kuhn, M. (2016). caret: Classification and Regression Training. R package version 6.0-68.   
