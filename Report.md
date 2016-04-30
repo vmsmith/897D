@@ -12,7 +12,7 @@ The entire dataset consists of 8009 observations. These were subsetted into 3984
 
 Team H evaluated five different classification techniques to capture likely donors: k-nearest neighbor, random forests, logistic regression, linear discriminant analysis, and support vector machines. 
 
-We evaluated __ different regression techniques to predict likely donation amounts: ordinary least squares regression, best subset regression, ridge regression, LASSO, and ________.
+We evaluated five different regression techniques to predict likely donation amounts: ordinary least squares (OLS) regression, best subset regression, ridge regression, LASSO, and Partial Least Square (PLS).
 
 Appendix A contains a complete description of the data.
 
