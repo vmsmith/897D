@@ -3,8 +3,15 @@
   * Rick: Architect the classification section to incororate feature selection
   * Rick: SVM tuning
   * Rick: Profit comparisons with full and reduced models
-  * Cheryl:
-  * Keith:
+  * Rick: ROC plots
+  * Rick: Template for regression method descriptions
+  * Cheryl: Write feature selection 
+  * Keith: Data for comparison table. For each regression method
+    *  Predicted profit
+    *  Mean predicted error
+    *  Standard error
+    *  Number of features
+
 * Topics
   * Lower profit with KNN using reduced variable set
   * 1 and 0 to "D" and "N" at the beginning of classification?
