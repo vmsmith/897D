@@ -128,6 +128,31 @@ data.test.std <- data.frame(x.test.std)
 
 ####################################################################################
 #
+#             Data Preparation for Feature Selection
+#
+####################################################################################
+
+#Prepare data for classification feature selection
+data.train.std.c.x = data.train.std.c[,-21]
+data.train.std.c.y = as.factor(data.train.std.c$donr)
+data.valid.std.c.x = data.valid.std.c[,-21]
+data.valid.std.c.y = as.factor(data.valid.std.c$donr)
+
+#Prepare data for regression feature selection
+data.train.std.y.x = data.train.std.y[,-21]
+data.train.std.y.y = as.factor(data.train.std.y$damt)
+data.valid.std.y.x = data.valid.std.y[,-21]
+data.valid.std.y.y = as.factor(data.valid.std.y$damt)
+
+# Create classification variable for classification tree
+Donor=ifelse(c.train==1,"D","ND")
+Donor.frame=data.frame(data.train.std.c,Donor)
+Donor.valid=ifelse(c.valid==1,"D","ND")
+Donor.frame.valid=data.frame(data.valid.std.c,Donor.valid)
+
+
+####################################################################################
+#
 #           Classification Modeling - Linear Discriminant Analysis
 #
 ####################################################################################
