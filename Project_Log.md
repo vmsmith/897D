@@ -1,12 +1,18 @@
 #### Sat, 30 Apr
 * To Do
   * Rick: Architect the classification section to incororate feature selection
+  * Rick: SVM tuning
+  * Rick: Profit comparisons with full and reduced models
+  * Cheryl:
+  * Keith:
 * Topics
   * Lower profit with KNN using reduced variable set
   * 1 and 0 to "D" and "N" at the beginning of classification?
   * SVM tuning
   * Cross-validation
   * ROC plots
+
+* Next meeting: 
 
 #### Thu, 28 Apr
 * Rick - Look at regions variable
